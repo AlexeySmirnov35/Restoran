@@ -1,5 +1,4 @@
-﻿using Restoran.Page;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,17 +13,18 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Restoran
+namespace Restoran.Page
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для EditPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class EditPage
     {
-        public MainWindow()
+        public EditPage()
         {
             InitializeComponent();
-            FrmMain.Navigate(new AutorPage());
+           DtGrid.ItemsSource=RestoranEntities.GetContext().User.ToList();
+            bn
         }
     }
 }
