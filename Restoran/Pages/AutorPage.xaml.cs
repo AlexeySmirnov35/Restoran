@@ -77,7 +77,12 @@ namespace Restoran.Page
 
         private void Reg_Btn_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("page/RegPage.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("pages/RegPage.xaml", UriKind.Relative));
+        }
+
+        private void btn_cli(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("Pages/EditPage.xaml",UriKind.Relative));
         }
     }
 }

@@ -14,6 +14,7 @@
           <Property Name="TableID" Type="int" />
           <Property Name="UserID" Type="int" />
           <Property Name="NumberOfPeople" Type="int" />
+          <Property Name="DateTimeReserv" Type="datetime" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -57,7 +58,6 @@
           <Property Name="passwod" Type="nvarchar(max)" />
           <Property Name="RoleID" Type="int" />
           <Property Name="PhoneNumber" Type="nvarchar" MaxLength="12" />
-          <Property Name="Data" Type="datetime" />
         </EntityType>
         <Association Name="FK_Reservations_Tables">
           <End Role="Tables" Type="Self.Tables" Multiplicity="0..1" />
@@ -128,6 +128,7 @@
           <Property Name="TableID" Type="Int32" />
           <Property Name="UserID" Type="Int32" />
           <Property Name="NumberOfPeople" Type="Int32" />
+          <Property Name="DateTimeReserv" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Tables" Relationship="Self.FK_Reservations_Tables" FromRole="Reservations" ToRole="Tables" />
           <NavigationProperty Name="User" Relationship="Self.FK_Reservations_User" FromRole="Reservations" ToRole="User" />
         </EntityType>
@@ -170,7 +171,6 @@
           <Property Name="passwod" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="RoleID" Type="Int32" />
           <Property Name="PhoneNumber" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
-          <Property Name="Data" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Reservations" Relationship="Self.FK_Reservations_User" FromRole="User" ToRole="Reservations" />
           <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
         </EntityType>
@@ -243,6 +243,7 @@
                 <ScalarProperty Name="TableID" ColumnName="TableID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="NumberOfPeople" ColumnName="NumberOfPeople" />
+                <ScalarProperty Name="DateTimeReserv" ColumnName="DateTimeReserv" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -285,7 +286,6 @@
                 <ScalarProperty Name="passwod" ColumnName="passwod" />
                 <ScalarProperty Name="RoleID" ColumnName="RoleID" />
                 <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="Data" ColumnName="Data" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

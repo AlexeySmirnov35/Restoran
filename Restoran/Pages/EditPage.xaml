@@ -9,7 +9,7 @@
       Title="EditPage">
 
     <Grid Background="White">
-        <DataGrid x:Name="DtGrid" Margin="0,0,0,225">
+        <DataGrid x:Name="DtGrid" Margin="0,0,0,260">
             
         </DataGrid>
         <ListView x:Name="bListView" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,205,0,0">

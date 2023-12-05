@@ -23,8 +23,8 @@ namespace Restoran.Page
         public EditPage()
         {
             InitializeComponent();
-           DtGrid.ItemsSource=RestoranEntities.GetContext().User.ToList();
-            bn
+            DtGrid.ItemsSource=RestoranEntities.GetContext().User.ToList();
+            bListView.ItemsSource = RestoranEntities.GetContext().User.ToList();
         }
     }
 }

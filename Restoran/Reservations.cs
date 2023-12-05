@@ -19,6 +19,7 @@ namespace Restoran
         public Nullable<int> TableID { get; set; }
         public Nullable<int> UserID { get; set; }
         public Nullable<int> NumberOfPeople { get; set; }
+        public Nullable<System.DateTime> DateTimeReserv { get; set; }
     
         public virtual Tables Tables { get; set; }
         public virtual User User { get; set; }

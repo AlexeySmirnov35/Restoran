@@ -20,10 +20,6 @@ namespace Restoran
             : base("name=RestoranEntities")
         {
         }
-        
-        
-
-
         public static RestoranEntities GetContext()
         {
             if (_konfKc == null)
@@ -32,6 +28,7 @@ namespace Restoran
             }
             return _konfKc;
         }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
