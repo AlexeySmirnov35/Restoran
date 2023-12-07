@@ -94,20 +94,17 @@
     <Compile Include="Role.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Rooms.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="sysdiagrams.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Tables.cs">
+    <Compile Include="Traffics.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="User.cs">
       <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Windowss\AdminWindow.xaml.cs">
-      <DependentUpon>AdminWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windowss\UserWindow.xaml.cs">
-      <DependentUpon>UserWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -134,14 +131,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\RegPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windowss\AdminWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windowss\UserWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

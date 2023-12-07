@@ -1,4 +1,4 @@
-﻿using Restoran.Windowss;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,8 +45,7 @@ namespace Restoran.Page
                     {
                         case 1:
                             MessageBox.Show("Приветсвуем Вас, " + userObj.Name + "!", "Успешная авторизация", MessageBoxButton.OK, MessageBoxImage.Information);
-                            UserWindow userWindow = new UserWindow();
-                            userWindow.ShowDialog();
+                            NavigationService.Navigate(new FormPage());
                             break;
                     }
                 }
@@ -57,10 +56,9 @@ namespace Restoran.Page
 
                         case 2:
                             MessageBox.Show("Приветсвуем Вас " + userObj.RoleID + "!", "Вы вошли как соотрудник", MessageBoxButton.OK, MessageBoxImage.Information);
-
+                            NavigationService.Navigate(new FormPage());
                             this.Content = null;
-                            AdminWindow adminWindow = new AdminWindow();
-                            adminWindow.ShowDialog();
+                          
 
                             break;
                         default: MessageBox.Show("Не обнужерен", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Warning); break;

@@ -9,12 +9,14 @@
           <Key>
             <PropertyRef Name="ReservationsID" />
           </Key>
-          <Property Name="ReservationsID" Type="int" Nullable="false" />
+          <Property Name="ReservationsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FIO" Type="nvarchar(max)" />
-          <Property Name="TableID" Type="int" />
           <Property Name="UserID" Type="int" />
           <Property Name="NumberOfPeople" Type="int" />
           <Property Name="DateTimeReserv" Type="datetime" />
+          <Property Name="RoomID" Type="int" />
+          <Property Name="Hours" Type="int" />
+          <Property Name="DateEndReserv" Type="datetime" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -22,6 +24,18 @@
           </Key>
           <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RoleName" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Rooms">
+          <Key>
+            <PropertyRef Name="RoomID" />
+          </Key>
+          <Property Name="RoomID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameRoom" Type="nvarchar(max)" />
+          <Property Name="Price" Type="int" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="DopPriceMinut" Type="int" />
+          <Property Name="NumberPeopleMax" Type="int" />
+          <Property Name="Photo" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -33,19 +47,13 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <EntityType Name="Tables">
+        <EntityType Name="Traffics">
           <Key>
-            <PropertyRef Name="TableID" />
+            <PropertyRef Name="TrafficID" />
           </Key>
-          <Property Name="TableID" Type="int" Nullable="false" />
-          <Property Name="TableName" Type="nvarchar" MaxLength="50" />
-          <Property Name="PeopleMax" Type="int" />
+          <Property Name="TrafficID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TrafficName" Type="nchar" MaxLength="10" />
         </EntityType>
-        <!--Ошибки, обнаруженные при создании:
-предупреждение 6013: Первичный ключ в таблице или представлении "Restoran.dbo.time" не определен, его не удалось вывести. Эта таблица или представление исключены. Чтобы использовать сущность, необходимо проверить схему, добавить правильные ключи и раскомментировать ее.
-        <EntityType Name="time">
-          <Property Name="дата" Type="nchar" MaxLength="10" />
-        </EntityType>-->
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="UserID" />
@@ -59,15 +67,15 @@
           <Property Name="RoleID" Type="int" />
           <Property Name="PhoneNumber" Type="nvarchar" MaxLength="12" />
         </EntityType>
-        <Association Name="FK_Reservations_Tables">
-          <End Role="Tables" Type="Self.Tables" Multiplicity="0..1" />
+        <Association Name="FK_Reservations_Rooms">
+          <End Role="Rooms" Type="Self.Rooms" Multiplicity="0..1" />
           <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Tables">
-              <PropertyRef Name="TableID" />
+            <Principal Role="Rooms">
+              <PropertyRef Name="RoomID" />
             </Principal>
             <Dependent Role="Reservations">
-              <PropertyRef Name="TableID" />
+              <PropertyRef Name="RoomID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -98,11 +106,12 @@
         <EntityContainer Name="Хранилище RestoranModelContainer">
           <EntitySet Name="Reservations" EntityType="Self.Reservations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rooms" EntityType="Self.Rooms" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Tables" EntityType="Self.Tables" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Traffics" EntityType="Self.Traffics" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Reservations_Tables" Association="Self.FK_Reservations_Tables">
-            <End Role="Tables" EntitySet="Tables" />
+          <AssociationSet Name="FK_Reservations_Rooms" Association="Self.FK_Reservations_Rooms">
+            <End Role="Rooms" EntitySet="Rooms" />
             <End Role="Reservations" EntitySet="Reservations" />
           </AssociationSet>
           <AssociationSet Name="FK_Reservations_User" Association="Self.FK_Reservations_User">
@@ -123,13 +132,15 @@
           <Key>
             <PropertyRef Name="ReservationsID" />
           </Key>
-          <Property Name="ReservationsID" Type="Int32" Nullable="false" />
+          <Property Name="ReservationsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FIO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="TableID" Type="Int32" />
           <Property Name="UserID" Type="Int32" />
           <Property Name="NumberOfPeople" Type="Int32" />
           <Property Name="DateTimeReserv" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Tables" Relationship="Self.FK_Reservations_Tables" FromRole="Reservations" ToRole="Tables" />
+          <Property Name="RoomID" Type="Int32" />
+          <Property Name="Hours" Type="Int32" />
+          <Property Name="DateEndReserv" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Rooms" Relationship="Self.FK_Reservations_Rooms" FromRole="Reservations" ToRole="Rooms" />
           <NavigationProperty Name="User" Relationship="Self.FK_Reservations_User" FromRole="Reservations" ToRole="User" />
         </EntityType>
         <EntityType Name="Role">
@@ -139,6 +150,19 @@
           <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RoleName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="User" Relationship="Self.FK_User_Role" FromRole="Role" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Rooms">
+          <Key>
+            <PropertyRef Name="RoomID" />
+          </Key>
+          <Property Name="RoomID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameRoom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DopPriceMinut" Type="Int32" />
+          <Property Name="NumberPeopleMax" Type="Int32" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Reservations" Relationship="Self.FK_Reservations_Rooms" FromRole="Rooms" ToRole="Reservations" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -150,14 +174,12 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <EntityType Name="Tables">
+        <EntityType Name="Traffics">
           <Key>
-            <PropertyRef Name="TableID" />
+            <PropertyRef Name="TrafficID" />
           </Key>
-          <Property Name="TableID" Type="Int32" Nullable="false" />
-          <Property Name="TableName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PeopleMax" Type="Int32" />
-          <NavigationProperty Name="Reservations" Relationship="Self.FK_Reservations_Tables" FromRole="Tables" ToRole="Reservations" />
+          <Property Name="TrafficID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TrafficName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -174,15 +196,15 @@
           <NavigationProperty Name="Reservations" Relationship="Self.FK_Reservations_User" FromRole="User" ToRole="Reservations" />
           <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
         </EntityType>
-        <Association Name="FK_Reservations_Tables">
-          <End Role="Tables" Type="Self.Tables" Multiplicity="0..1" />
+        <Association Name="FK_Reservations_Rooms">
+          <End Role="Rooms" Type="Self.Rooms" Multiplicity="0..1" />
           <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Tables">
-              <PropertyRef Name="TableID" />
+            <Principal Role="Rooms">
+              <PropertyRef Name="RoomID" />
             </Principal>
             <Dependent Role="Reservations">
-              <PropertyRef Name="TableID" />
+              <PropertyRef Name="RoomID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -213,11 +235,12 @@
         <EntityContainer Name="RestoranEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Reservations" EntityType="Self.Reservations" />
           <EntitySet Name="Role" EntityType="Self.Role" />
+          <EntitySet Name="Rooms" EntityType="Self.Rooms" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <EntitySet Name="Tables" EntityType="Self.Tables" />
+          <EntitySet Name="Traffics" EntityType="Self.Traffics" />
           <EntitySet Name="User" EntityType="Self.User" />
-          <AssociationSet Name="FK_Reservations_Tables" Association="Self.FK_Reservations_Tables">
-            <End Role="Tables" EntitySet="Tables" />
+          <AssociationSet Name="FK_Reservations_Rooms" Association="Self.FK_Reservations_Rooms">
+            <End Role="Rooms" EntitySet="Rooms" />
             <End Role="Reservations" EntitySet="Reservations" />
           </AssociationSet>
           <AssociationSet Name="FK_Reservations_User" Association="Self.FK_Reservations_User">
@@ -240,10 +263,12 @@
               <MappingFragment StoreEntitySet="Reservations">
                 <ScalarProperty Name="ReservationsID" ColumnName="ReservationsID" />
                 <ScalarProperty Name="FIO" ColumnName="FIO" />
-                <ScalarProperty Name="TableID" ColumnName="TableID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="NumberOfPeople" ColumnName="NumberOfPeople" />
                 <ScalarProperty Name="DateTimeReserv" ColumnName="DateTimeReserv" />
+                <ScalarProperty Name="RoomID" ColumnName="RoomID" />
+                <ScalarProperty Name="Hours" ColumnName="Hours" />
+                <ScalarProperty Name="DateEndReserv" ColumnName="DateEndReserv" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -252,6 +277,19 @@
               <MappingFragment StoreEntitySet="Role">
                 <ScalarProperty Name="RoleID" ColumnName="RoleID" />
                 <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rooms">
+            <EntityTypeMapping TypeName="RestoranModel.Rooms">
+              <MappingFragment StoreEntitySet="Rooms">
+                <ScalarProperty Name="RoomID" ColumnName="RoomID" />
+                <ScalarProperty Name="NameRoom" ColumnName="NameRoom" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DopPriceMinut" ColumnName="DopPriceMinut" />
+                <ScalarProperty Name="NumberPeopleMax" ColumnName="NumberPeopleMax" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -266,12 +304,11 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Tables">
-            <EntityTypeMapping TypeName="RestoranModel.Tables">
-              <MappingFragment StoreEntitySet="Tables">
-                <ScalarProperty Name="TableID" ColumnName="TableID" />
-                <ScalarProperty Name="TableName" ColumnName="TableName" />
-                <ScalarProperty Name="PeopleMax" ColumnName="PeopleMax" />
+          <EntitySetMapping Name="Traffics">
+            <EntityTypeMapping TypeName="RestoranModel.Traffics">
+              <MappingFragment StoreEntitySet="Traffics">
+                <ScalarProperty Name="TrafficID" ColumnName="TrafficID" />
+                <ScalarProperty Name="TrafficName" ColumnName="TrafficName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

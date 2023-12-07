@@ -36,8 +36,9 @@ namespace Restoran
     
         public virtual DbSet<Reservations> Reservations { get; set; }
         public virtual DbSet<Role> Role { get; set; }
+        public virtual DbSet<Rooms> Rooms { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public virtual DbSet<Tables> Tables { get; set; }
+        public virtual DbSet<Traffics> Traffics { get; set; }
         public virtual DbSet<User> User { get; set; }
     }
 }

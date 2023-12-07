@@ -12,17 +12,21 @@ namespace Restoran
     using System;
     using System.Collections.Generic;
     
-    public partial class Tables
+    public partial class Rooms
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Tables()
+        public Rooms()
         {
             this.Reservations = new HashSet<Reservations>();
         }
     
-        public int TableID { get; set; }
-        public string TableName { get; set; }
-        public Nullable<int> PeopleMax { get; set; }
+        public int RoomID { get; set; }
+        public string NameRoom { get; set; }
+        public Nullable<int> Price { get; set; }
+        public string Description { get; set; }
+        public Nullable<int> DopPriceMinut { get; set; }
+        public Nullable<int> NumberPeopleMax { get; set; }
+        public byte[] Photo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reservations> Reservations { get; set; }
