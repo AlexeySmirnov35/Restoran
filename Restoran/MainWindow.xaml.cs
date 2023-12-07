@@ -24,7 +24,7 @@ namespace Restoran
         public MainWindow()
         {
             InitializeComponent();
-            FrmMain.Navigate(new AutorPage());
+            FrmMain.Navigate(new FormPage());
         }
     }
 }

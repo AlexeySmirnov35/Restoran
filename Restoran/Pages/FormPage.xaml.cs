@@ -88,20 +88,21 @@ namespace Restoran.Page
                         .Where(r => r.RoomID == roomId && DbFunctions.TruncateTime(r.DateTimeReserv) == selectedDate)
                         .ToList();
                     var reserhour = RestoranEntities.GetContext().Reservations.Where(r => r.RoomID == roomId);
-                    var hours =reserhour.Select(r=>r.Hours);
-                    var bookedHours =  reservations.SelectMany(r => Enumerable.Range(r.DateTimeReserv.Value.Hour,4));
-                    var hourst=reservations.Select(r => r.DateTimeReserv.Value);
-                   /* var allHours = Enumerable.Range(9, 12).ToList();
-                   
+                    var hours =reserhour.Select(r=>r.Hours).ToList();
+                    var bookedHours =  reservations.SelectMany(r => Enumerable.Range(r.DateTimeReserv.Value.Hour, (int)r.Hours));
+                    var hourst=reservations.Select(r => r.DateTimeReserv.Value.Hour).ToList();
+                    var allHours = Enumerable.Range(9, 12).ToList();
+                    var availableHours = allHours.Except(bookedHours);
+                      
 
-                    var availableHours = allHours.Except(bookedHours);*/
+                    
 
                     cbTime.Items.Clear();
                     if (reservations.Any())
                     {
                         for (int i = 9; i <= 20; i++)
                         {
-                            if ((i > bookedHours.Min() || i < bookedHours.Max()) && (i < bookedHours.Min() || i > bookedHours.Max()))
+                            if (!bookedHours.Contains(i))
                             {
                                 cbTime.Items.Add(new DateTime(1, 1, 1, i, 0, 0).ToString("HH:mm"));
                             }
@@ -120,6 +121,7 @@ namespace Restoran.Page
                 {
                     MessageBox.Show("Выберите комнату перед выбором даты.");
                 }
+
             }
         }
 
@@ -139,7 +141,7 @@ namespace Restoran.Page
                     MessageBox.Show("Выберите комнату и время");
                     return;
                 }
-
+                
                 string fios = $"{tbSur.Text} {tbName.Text} {tbPat.Text}";
                 Reservations newd = new Reservations();
                 DateTime selectedDate = datePicker.SelectedDate ?? DateTime.Now.Date;
@@ -147,16 +149,29 @@ namespace Restoran.Page
                 DateTime combinedDateTime = new DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, selectedTime.Hour, selectedTime.Minute, 0);
                 newd.DateTimeReserv = combinedDateTime;
 
+                int selectedHours = Convert.ToInt32(hourbron.ToString());
+                var endDate = newd.DateTimeReserv.Value.AddHours(selectedHours);
+
+                var overlappingReservations = RestoranEntities.GetContext().Reservations.Where(r => r.RoomID == room.RoomID &&
+                      ((newd.DateTimeReserv >= r.DateTimeReserv && newd.DateTimeReserv < r.DateEndReserv) ||
+                       (endDate > r.DateTimeReserv && endDate <= r.DateEndReserv))).ToList();
+
+                if (overlappingReservations.Any())
+                {
+                    MessageBox.Show("Выбранное количество часов не может быть забронированно.");
+                    return;
+                }
+
+
                 Reservations reservation = new Reservations()
                 {
                     UserID = userId,
                     FIO = fios,
                     RoomID = room.RoomID,
                     NumberOfPeople = Convert.ToInt32(tbNum.Text),
-                    Hours = Convert.ToInt32(hourbron.ToString()),
+                    Hours = selectedHours,
                     DateTimeReserv = newd.DateTimeReserv,
-                    DateEndReserv= newd.DateTimeReserv.Value.AddHours(hour1)
-                    
+                    DateEndReserv = newd.DateTimeReserv.Value.AddHours(selectedHours)
                 };
 
                 RestoranEntities.GetContext().Reservations.Add(reservation);
@@ -167,7 +182,9 @@ namespace Restoran.Page
             {
                 MessageBox.Show($"Произошла ошибка при сохранении бронирования: {ex.Message}");
             }
+            DatePicker_SelectedChanged(datePicker, null);
         }
+
 
 
 

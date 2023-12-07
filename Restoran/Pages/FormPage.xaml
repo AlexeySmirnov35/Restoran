@@ -26,7 +26,7 @@
         <TextBox x:Name="tbPhone" HorizontalAlignment="Left" Margin="488,364,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
         <TextBlock HorizontalAlignment="Left" Margin="412,319,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Margin="488,317,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <ComboBox x:Name="cbRoom" SelectedItem="{Binding NameRoom}"  HorizontalAlignment="Left" Margin="242,246,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="cbRoom" SelectedItem="{Binding Rooms}"  DisplayMemberPath="NameRoom"  HorizontalAlignment="Left" Margin="242,246,0,0" VerticalAlignment="Top" Width="120"/>
         <ComboBox x:Name="cbHour"   HorizontalAlignment="Left" Margin="242,292,0,0" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
