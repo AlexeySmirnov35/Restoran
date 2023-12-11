@@ -50,5 +50,32 @@ namespace Restoran.Pages
                    .ConvertFrom(img) as ImageSource;
             }
         }
+
+        private void BtnSave_Click(object sender, RoutedEventArgs e)
+        {
+            if (_rooms.RoomID == 0)
+            {
+                var room = new Rooms
+                {
+                   NameRoom=tbName.Text,
+                   Description=tbDesc.Text,
+                   Photo=img
+                };
+                RestoranEntities.GetContext().Rooms.Add(room);
+
+            }
+
+
+            try
+            {
+                RestoranEntities.GetContext().SaveChanges();
+                MessageBox.Show("Успешно сохранено");
+                NavigationService.GoBack();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
     }
 }
