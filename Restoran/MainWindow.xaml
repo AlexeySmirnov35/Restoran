@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Restoran"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="АнтиКАфе" Height="800" Width="800" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
     <Grid>
         <Frame x:Name="FrmMain" Content="Frame"/>
 

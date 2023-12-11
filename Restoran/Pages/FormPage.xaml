@@ -9,25 +9,23 @@
       Title="FormPage">
 
     <Grid Background="White">
-        <DatePicker x:Name="datePicker"  SelectedDateChanged="DatePicker_SelectedChanged" HorizontalAlignment="Left" Margin="91,209,0,0" VerticalAlignment="Top" Height="22" Width="131"/>
-        <ComboBox x:Name="cbTime" HorizontalAlignment="Left" Margin="242,209,0,0" VerticalAlignment="Top" Width="120"/>
+        <DatePicker x:Name="datePicker"  SelectedDateChanged="DatePicker_SelectedChanged" HorizontalAlignment="Left" Margin="52,67,0,0" VerticalAlignment="Top" Height="22" Width="131"/>
+        <ComboBox x:Name="cbTime" HorizontalAlignment="Left" Margin="33,124,0,0" VerticalAlignment="Top" Width="120"/>
         <Button Content="Button" Click="CreateReq_Click" HorizontalAlignment="Left" Margin="431,407,0,0" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="406,125,0,0" TextWrapping="Wrap" Text="Фамилия" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbNum" HorizontalAlignment="Left" Margin="488,275,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBlock HorizontalAlignment="Left" Margin="407,134,0,0" TextWrapping="Wrap" Text="Фамилия" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbNum" HorizontalAlignment="Left" Margin="488,246,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBlock HorizontalAlignment="Left" Margin="412,175,0,0" TextWrapping="Wrap" Text="Имя" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbSur" HorizontalAlignment="Left" Margin="488,132,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tbSur" HorizontalAlignment="Left" Margin="488,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBlock HorizontalAlignment="Left" Margin="412,205,0,0" TextWrapping="Wrap" Text="Отчество" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbName" HorizontalAlignment="Left" Margin="488,171,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBlock HorizontalAlignment="Left" Margin="412,366,0,0" TextWrapping="Wrap" Text="Номер" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbPat" HorizontalAlignment="Left" Margin="488,207,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBlock HorizontalAlignment="Left" Margin="372,284,0,0" TextWrapping="Wrap" Text="Количество людей" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Margin="488,238,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBlock HorizontalAlignment="Left" Margin="412,238,0,0" TextWrapping="Wrap" Text="Комната" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbPhone" HorizontalAlignment="Left" Margin="488,364,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBlock HorizontalAlignment="Left" Margin="412,319,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Margin="488,317,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <ComboBox x:Name="cbRoom" SelectedItem="{Binding Rooms}"  DisplayMemberPath="NameRoom"  HorizontalAlignment="Left" Margin="242,246,0,0" VerticalAlignment="Top" Width="120"/>
-        <ComboBox x:Name="cbHour"   HorizontalAlignment="Left" Margin="242,292,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tbName" HorizontalAlignment="Left" Margin="488,171,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBlock HorizontalAlignment="Left" Margin="412,287,0,0" TextWrapping="Wrap" Text="Номер" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbPat" HorizontalAlignment="Left" Margin="488,207,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBlock HorizontalAlignment="Left" Margin="380,249,0,0" TextWrapping="Wrap" Text="Количество людей" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbPhone" HorizontalAlignment="Left" Margin="488,285,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="cbRoom" SelectedItem="{Binding Rooms}"  DisplayMemberPath="NameRoom"  HorizontalAlignment="Left" Margin="33,171,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="cbHour"   HorizontalAlignment="Left" Margin="33,207,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBlock HorizontalAlignment="Left" Margin="37,103,0,0" TextWrapping="Wrap" Text="Выберите время бронирования " VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="33,148,0,0" TextWrapping="Wrap" Text="Выберите комнату " VerticalAlignment="Top"/>
 
     </Grid>
 </Page>

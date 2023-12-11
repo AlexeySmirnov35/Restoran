@@ -1,4 +1,5 @@
 ﻿
+using Restoran.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +36,7 @@ namespace Restoran.Page
                 {
 
                     NavigationService.Navigate(new Uri("Pages/EditPage.xaml",UriKind.Relative));
-                    MessageBox.Show("Похоже что вы не зарегистрированы, пожалуйста, зарегистрируйтесь ", "Ошибка авторизации", MessageBoxButton.OK, MessageBoxImage.Error);
+                  // MessageBox.Show("Похоже что вы не зарегистрированы, пожалуйста, зарегистрируйтесь ", "Ошибка авторизации", MessageBoxButton.OK, MessageBoxImage.Error);
 
 
                 }
@@ -45,7 +46,7 @@ namespace Restoran.Page
                     {
                         case 1:
                             MessageBox.Show("Приветсвуем Вас, " + userObj.Name + "!", "Успешная авторизация", MessageBoxButton.OK, MessageBoxImage.Information);
-                            NavigationService.Navigate(new FormPage());
+                            NavigationService.Navigate(new AdminPage());
                             break;
                     }
                 }

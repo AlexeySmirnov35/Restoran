@@ -1,6 +1,4 @@
-﻿using Restoran.Page;
-using Restoran.Pages;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,17 +13,24 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Restoran
+namespace Restoran.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для InfoRoomPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class InfoRoomPage
     {
-        public MainWindow()
+        private Rooms _rooms= new Rooms();
+        public InfoRoomPage(Rooms selrooms)
         {
             InitializeComponent();
-            FrmMain.Navigate(new EditPage());
+            if (selrooms != null)
+            {
+                _rooms = selrooms;
+            }
+           
+            DataContext = _rooms;
+            
         }
     }
 }

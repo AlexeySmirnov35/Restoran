@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Restoran.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,8 +24,13 @@ namespace Restoran.Page
         public EditPage()
         {
             InitializeComponent();
-            DtGrid.ItemsSource=RestoranEntities.GetContext().User.ToList();
-            bListView.ItemsSource = RestoranEntities.GetContext().User.ToList();
+            //DtGrid.ItemsSource=RestoranEntities.GetContext().User.ToList();
+            bListView.ItemsSource = RestoranEntities.GetContext().Rooms.ToList();
+        }
+
+        private void Btn_Edit_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new AddEditRoomPage((sender as Button).DataContext as Rooms));
         }
     }
 }
