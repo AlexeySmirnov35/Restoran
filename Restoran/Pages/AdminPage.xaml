@@ -10,7 +10,7 @@
 
     <Grid Background="#FFEFEEEE">
         <TextBlock HorizontalAlignment="Center" Margin="0,10,0,0" TextWrapping="Wrap" Text="Панель администратора" VerticalAlignment="Top"/>
-        <Button Content="Комнаты" HorizontalAlignment="Left" Margin="167,248,0,0" VerticalAlignment="Top" Height="28" Width="70"/>
+        <Button Content="Комнаты" HorizontalAlignment="Left" Margin="138,144,0,0" VerticalAlignment="Top" Height="28" Width="70"/>
 
     </Grid>
 </Page>

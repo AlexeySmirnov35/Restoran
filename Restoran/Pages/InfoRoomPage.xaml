@@ -9,16 +9,16 @@
       Title="InfoRoomPage">
 
     <Grid Background="White">
-        <Image Width="455" Stretch="Fill" HorizontalAlignment="Left" Margin="10,8,0,371" Height="450">
+        <Image Margin="20,91,522,475">
             <Image.Source>
                 <Binding Path="Photo">
                     <Binding.TargetNullValue>
-                        <ImageSource>\img/imgno.png</ImageSource>
+                        <BitmapImage UriSource="/img/imgNo.png" />
                     </Binding.TargetNullValue>
                 </Binding>
             </Image.Source>
         </Image>
-        <TextBlock HorizontalAlignment="Left" Margin="555,10,0,0" TextWrapping="Wrap" Text="{Binding NameRoom}" VerticalAlignment="Top" Width="142" Height="47"/>
-        <TextBlock Text="{Binding Price,StringFormat={}{0:N2} Руб}"  Grid.Row="2"  Margin="5 5 5 15" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold"></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="272,10,0,0" TextWrapping="Wrap" Text="{Binding NameRoom}" VerticalAlignment="Top" Width="274" Height="54"/>
+        <TextBlock Text="{Binding Price,StringFormat={}{0:N2} Руб}"   Margin="247,632,0,114" Width="274" Height="54" HorizontalAlignment="Left" FontSize="20" FontWeight="Bold"></TextBlock>
     </Grid>
 </Page>

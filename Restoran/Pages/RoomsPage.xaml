@@ -9,7 +9,7 @@
       Title="RoomsPage">
 
     <Grid Background="White">
-        <ListView Name="LVieew" Margin="0,65,0,0"   ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center" Background="{x:Null}" Foreground="Black">
+        <ListView Name="LVieew" Margin="0,65,0,0"   ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center" Background="{x:Null}" Foreground="Black" FontFamily="Times New Roman" FontSize="16">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center"></WrapPanel>
@@ -24,11 +24,11 @@
                             <RowDefinition Height="auto"></RowDefinition>
                             <RowDefinition Height="auto"></RowDefinition>
                         </Grid.RowDefinitions>
-                        <Image Width="400" Grid.Row="1" Stretch="Fill" HorizontalAlignment="Center" Margin="5">
+                        <Image Width="100" Height="100">
                             <Image.Source>
                                 <Binding Path="Photo">
                                     <Binding.TargetNullValue>
-                                        <ImageSource>\img/imgNo.png</ImageSource>
+                                        <BitmapImage UriSource="/img/imgNo.png" />
                                     </Binding.TargetNullValue>
                                 </Binding>
                             </Image.Source>

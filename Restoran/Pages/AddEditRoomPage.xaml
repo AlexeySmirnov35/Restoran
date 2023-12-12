@@ -9,7 +9,7 @@
       Title="AddEditRoomPage">
 
     <Grid Background="White">
-        <Image x:Name="ImageV" Width="300" Height="230" Margin="484,88,16,132">
+        <Image x:Name="ImageV" Margin="566,105,21,159">
             <Image.Source>
                 <Binding Path="PhotoProduct">
                     <Binding.TargetNullValue>
@@ -18,40 +18,22 @@
                 </Binding>
             </Image.Source>
         </Image>
-        <Button Content="Выбрать изображение" HorizontalAlignment="Left" Click="Image_Load"  Margin="528,328,0,0" FontSize="16" FontFamily="Comic Sans MS" HorizontalContentAlignment="Center" VerticalAlignment="Top" Height="44" Width="212" Background="Black">
-            <Button.Foreground>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="Yellow"/>
-                    <GradientStop Color="Red" Offset="1"/>
-                </LinearGradientBrush>
-            </Button.Foreground>
-        </Button>
-        <TextBox x:Name="tbName" HorizontalAlignment="Left" Margin="314,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="224" Height="42"/>
-        <TextBox x:Name="tbDesc" HorizontalAlignment="Left" Margin="10,163,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="450" Height="187"/>
-        <TextBox x:Name="tbPrice" HorizontalAlignment="Left" Margin="10,92,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="tbDopMinut" HorizontalAlignment="Left" Margin="165,92,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="tbNumberMax" HorizontalAlignment="Center" Margin="0,92,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBlock HorizontalAlignment="Left" Margin="340,71,0,0" TextWrapping="Wrap" Text="Напишит описание" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="165,71,0,0" TextWrapping="Wrap" Text="Напишит описание" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="190,18,0,0" TextWrapping="Wrap" Text="Напишит описание" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,71,0,0" TextWrapping="Wrap" Text="Напишит описание" VerticalAlignment="Top"/>
-        <Button Content="Вназад" HorizontalAlignment="Left" Click="Image_Load"  Margin="663,396,0,0" FontSize="16" FontFamily="Comic Sans MS" HorizontalContentAlignment="Center" VerticalAlignment="Top" Height="33" Width="127" Background="Black">
-            <Button.Foreground>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="Yellow"/>
-                    <GradientStop Color="Red" Offset="1"/>
-                </LinearGradientBrush>
-            </Button.Foreground>
-        </Button>
-        <Button Content="Сохранить" HorizontalAlignment="Left" Click="BtnSave_Click"  Margin="190,390,0,0" FontSize="16" FontFamily="Comic Sans MS" HorizontalContentAlignment="Center" VerticalAlignment="Top" Height="39" Width="147" Background="Black">
-            <Button.Foreground>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="Yellow"/>
-                    <GradientStop Color="Red" Offset="1"/>
-                </LinearGradientBrush>
-            </Button.Foreground>
-        </Button>
-        <TextBlock HorizontalAlignment="Left" Margin="10,125,0,0" TextWrapping="Wrap" Text="Напишит описание" VerticalAlignment="Top"/>
+        <Button Content="Выбрать изображение" HorizontalAlignment="Left" Click="Image_Load"  Margin="567,314,0,0" FontSize="16" FontFamily="Times New Roman" HorizontalContentAlignment="Center" 
+                VerticalAlignment="Top" Height="44" Width="212"/>
+        <TextBox x:Name="tbName" HorizontalAlignment="Left" Margin="352,11,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" Height="42" FontFamily="Times New Roman" FontSize="16"/>
+        <TextBox x:Name="tbDesc" HorizontalAlignment="Left" Margin="9,98,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="534" Height="200" FontFamily="Times New Roman" FontSize="16"/>
+        <TextBox x:Name="tbPrice" HorizontalAlignment="Left" Margin="11,344,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="127" FontFamily="Times New Roman" FontSize="16" Height="34"/>
+        <TextBox x:Name="tbDopMinut" HorizontalAlignment="Left" Margin="162,345,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="133" FontFamily="Times New Roman" FontSize="16" Height="35"/>
+        <TextBox x:Name="tbNumberMax" HorizontalAlignment="Left" Margin="337,348,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="145" FontFamily="Times New Roman" FontSize="16" Height="33"/>
+        <TextBlock HorizontalAlignment="Left" Margin="335,304,0,0" TextWrapping="Wrap" Text="Напишите количество людей" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16" Height="39" Width="167"/>
+        <TextBlock HorizontalAlignment="Left" Margin="167,304,0,0" TextWrapping="Wrap" Text="Напишите цену доп. времени" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16" Height="38" Width="150"/>
+        <TextBlock HorizontalAlignment="Left" Margin="201,22,0,0" TextWrapping="Wrap" Text="Напишит название" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16"/>
+        <TextBlock HorizontalAlignment="Left" Margin="15,314,0,0" TextWrapping="Wrap" Text="Напишит цену" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16"/>
+        <Button Content="Назад" HorizontalAlignment="Left" Click="Image_Load"  Margin="709,406,0,0" FontSize="16" FontFamily="Times New Roman" HorizontalContentAlignment="Center" 
+                VerticalAlignment="Top" Height="33" Width="77"/>
+        <Button Content="Сохранить" HorizontalAlignment="Left" Click="BtnSave_Click"  Margin="320,398,0,0" FontSize="16" FontFamily="Times New Roman" 
+                HorizontalContentAlignment="Center" VerticalAlignment="Top" Height="39" Width="147" />
+        <TextBlock HorizontalAlignment="Left" Margin="12,71,0,0" TextWrapping="Wrap" Text="Напишит описание" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16"/>
 
     </Grid>
 </Page>
