@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,7 +22,7 @@ namespace Restoran.Page
     /// <summary>
     /// Логика взаимодействия для FormPage.xaml
     /// </summary>
-    public partial class FormPage 
+    public partial class FormPage
     {
         public FormPage()
         {
@@ -44,7 +45,14 @@ namespace Restoran.Page
             try
             {
                 User existingUser = RestoranEntities.GetContext().User.FirstOrDefault(x => x.PhoneNumber == tbPhone.Text);
+                string pattern = @"^\+7\s?\d{10}$";
+                Regex regex = new Regex(pattern);
 
+                if (!regex.IsMatch(tbPhone.Text))
+                {
+                    MessageBox.Show("number");
+                    return;
+                }
                 if (existingUser == null)
                 {
                     User newUser = new User()
@@ -58,7 +66,7 @@ namespace Restoran.Page
 
                     RestoranEntities.GetContext().User.Add(newUser);
                     RestoranEntities.GetContext().SaveChanges();
-                    MessageBox.Show("Успешно зарегистрирован новый пользователь");
+                    
                     CreateReservation(newUser.UserID);
                 }
                 else
@@ -88,14 +96,14 @@ namespace Restoran.Page
                         .Where(r => r.RoomID == roomId && DbFunctions.TruncateTime(r.DateTimeReserv) == selectedDate)
                         .ToList();
                     var reserhour = RestoranEntities.GetContext().Reservations.Where(r => r.RoomID == roomId);
-                    var hours =reserhour.Select(r=>r.Hours).ToList();
-                    var bookedHours =  reservations.SelectMany(r => Enumerable.Range(r.DateTimeReserv.Value.Hour, (int)r.Hours));
-                    var hourst=reservations.Select(r => r.DateTimeReserv.Value.Hour).ToList();
+                    var hours = reserhour.Select(r => r.Hours).ToList();
+                    var bookedHours = reservations.SelectMany(r => Enumerable.Range(r.DateTimeReserv.Value.Hour, (int)r.Hours));
+                    var hourst = reservations.Select(r => r.DateTimeReserv.Value.Hour).ToList();
                     var allHours = Enumerable.Range(9, 12).ToList();
                     var availableHours = allHours.Except(bookedHours);
-                      
 
-                    
+
+
 
                     cbTime.Items.Clear();
                     if (reservations.Any())
@@ -127,21 +135,31 @@ namespace Restoran.Page
 
 
 
-
+        
         private void CreateReservation(int userId)
         {
             try
             {
-                var room = cbRoom.SelectedItem as Rooms;
+                StringBuilder errors = new StringBuilder();
+                
                 var hour = cbTime.SelectedItem;
-                var hourbron = cbHour.SelectedItem;
-                int hour1 = Convert.ToInt32(hourbron.ToString());
+                var room = cbRoom.SelectedItem as Rooms;
                 if (room == null || hour == null)
                 {
-                    MessageBox.Show("Выберите комнату и время");
+                    errors.AppendLine("Выберите комнату и время");
+                    
+                }
+                if (room.NumberPeopleMax < Convert.ToInt32(tbNum.Text))
+                {
+                    errors.AppendLine("aaaa");
+                }
+                if (errors.Length > 0)
+                {
+                    MessageBox.Show(errors.ToString());
                     return;
                 }
-                
+                var hourbron = cbHour.SelectedItem;
+                int hour1 = Convert.ToInt32(hourbron.ToString());
                 string fios = $"{tbSur.Text} {tbName.Text} {tbPat.Text}";
                 Reservations newd = new Reservations();
                 DateTime selectedDate = datePicker.SelectedDate ?? DateTime.Now.Date;
@@ -184,7 +202,10 @@ namespace Restoran.Page
             }
             DatePicker_SelectedChanged(datePicker, null);
         }
-
+        private void PhoneNumberTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            
+        }
 
 
 
