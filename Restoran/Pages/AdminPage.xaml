@@ -10,7 +10,8 @@
 
     <Grid Background="#FFEFEEEE">
         <TextBlock HorizontalAlignment="Center" Margin="0,10,0,0" TextWrapping="Wrap" Text="Панель администратора" VerticalAlignment="Top"/>
-        <Button Content="Комнаты" HorizontalAlignment="Left" Margin="138,144,0,0" VerticalAlignment="Top" Height="28" Width="70"/>
+        <Button Content="Комнаты" Click="Btn_Room_Click" HorizontalAlignment="Left" Margin="138,144,0,0" VerticalAlignment="Top" Height="28" Width="70"/>
+        <Button Content="Брони" Click="Btn_Resrev_Click" HorizontalAlignment="Left" Margin="139,203,0,0" VerticalAlignment="Top" Height="28" Width="70"/>
 
     </Grid>
 </Page>

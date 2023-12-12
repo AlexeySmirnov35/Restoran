@@ -9,24 +9,24 @@
       Title="FormPage">
 
     <Grid Background="White">
-        <DatePicker x:Name="datePicker"  SelectedDateChanged="DatePicker_SelectedChanged" HorizontalAlignment="Left" Margin="538,178,0,0" VerticalAlignment="Top" Height="33" Width="146" FontFamily="Times New Roman" FontSize="16"/>
-        <ComboBox x:Name="cbTime" HorizontalAlignment="Left" Margin="539,225,0,0" VerticalAlignment="Top" Width="143" FontFamily="Times New Roman" FontSize="16" Height="26"/>
+        <DatePicker x:Name="datePicker"  SelectedDateChanged="DatePicker_SelectedChanged" HorizontalAlignment="Left" Margin="535,167,0,0" VerticalAlignment="Top" Height="33" Width="146" FontFamily="Times New Roman" FontSize="16"/>
+        <ComboBox x:Name="cbTime" HorizontalAlignment="Left" Margin="536,214,0,0" VerticalAlignment="Top" Width="143" FontFamily="Times New Roman" FontSize="16" Height="26"/>
         <Button Content="Button" Click="CreateReq_Click" HorizontalAlignment="Left" Margin="431,407,0,0" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16"/>
         <TextBlock HorizontalAlignment="Left" Margin="138,129,0,0" TextWrapping="Wrap" Text="Фамилия" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16"/>
-        <TextBox x:Name="tbNum" HorizontalAlignment="Left" Margin="229,246,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="63" FontFamily="Times New Roman" FontSize="16" Height="33"/>
+        <TextBox x:Name="tbNum" HorizontalAlignment="Left" Margin="231,287,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="63" FontFamily="Times New Roman" FontSize="16" Height="33"/>
         <TextBlock HorizontalAlignment="Left" Margin="140,168,0,0" TextWrapping="Wrap" Text="Имя" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16"/>
         <TextBox x:Name="tbSur" HorizontalAlignment="Left" Margin="229,129,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="122" FontFamily="Times New Roman" FontSize="16" Height="23"/>
         <TextBlock HorizontalAlignment="Left" Margin="139,204,0,0" TextWrapping="Wrap" Text="Отчество" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16"/>
         <TextBox x:Name="tbName" HorizontalAlignment="Left" Margin="229,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="123" FontFamily="Times New Roman" FontSize="16" Height="24"/>
-        <TextBlock HorizontalAlignment="Left" Margin="139,292,0,0" TextWrapping="Wrap" Text="Номер" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16"/>
+        <TextBlock HorizontalAlignment="Left" Margin="139,238,0,0" TextWrapping="Wrap" Text="Номер телефона" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16" Height="38" Width="84"/>
         <TextBox x:Name="tbPat" HorizontalAlignment="Left" Margin="230,203,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="123" FontFamily="Times New Roman" FontSize="16" Height="24"/>
-        <TextBlock HorizontalAlignment="Left" Margin="138,242,0,0" TextWrapping="Wrap" Text="Количество людей" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16" Height="36" Width="87"/>
-        <TextBox x:Name="tbPhone" HorizontalAlignment="Left" Margin="229,288,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="126" FontFamily="Times New Roman" FontSize="16" Height="25"/>
-        <ComboBox x:Name="cbRoom" SelectedItem="{Binding Rooms}"  DisplayMemberPath="NameRoom"  HorizontalAlignment="Left" Margin="538,137,0,0" VerticalAlignment="Top" Width="146" FontFamily="Times New Roman" FontSize="16" Height="25"/>
-        <ComboBox x:Name="cbHour"   HorizontalAlignment="Left" Margin="539,273,0,0" VerticalAlignment="Top" Width="140" FontFamily="Times New Roman" FontSize="16" Height="25"/>
-        <TextBlock HorizontalAlignment="Left" Margin="391,217,0,0" TextWrapping="Wrap" Text="Выберите время бронирования " VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16" Height="38" Width="141"/>
-        <TextBlock HorizontalAlignment="Left" Margin="392,137,0,0" TextWrapping="Wrap" Text="Выберите комнату " VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16"/>
-        <TextBlock HorizontalAlignment="Left" Margin="390,264,0,0" TextWrapping="Wrap" Text="Выберите количество часов " VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16" Height="38" Width="141"/>
+        <TextBlock HorizontalAlignment="Left" Margin="140,283,0,0" TextWrapping="Wrap" Text="Количество людей" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16" Height="36" Width="87"/>
+        <TextBox x:Name="tbPhone" HorizontalAlignment="Left" Margin="229,244,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="126" FontFamily="Times New Roman" FontSize="16" Height="25"/>
+        <ComboBox x:Name="cbRoom" SelectedItem="{Binding Rooms}"  DisplayMemberPath="NameRoom"  HorizontalAlignment="Left" Margin="535,126,0,0" VerticalAlignment="Top" Width="146" FontFamily="Times New Roman" FontSize="16" Height="25"/>
+        <ComboBox x:Name="cbHour"   HorizontalAlignment="Left" Margin="536,262,0,0" VerticalAlignment="Top" Width="140" FontFamily="Times New Roman" FontSize="16" Height="26"/>
+        <TextBlock HorizontalAlignment="Left" Margin="388,0,0,0" TextWrapping="Wrap" Text="Выберите время бронирования " VerticalAlignment="Center" FontFamily="Times New Roman" FontSize="16" Height="38" Width="141"/>
+        <TextBlock HorizontalAlignment="Left" Margin="389,126,0,0" TextWrapping="Wrap" Text="Выберите комнату " VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16"/>
+        <TextBlock HorizontalAlignment="Left" Margin="387,253,0,0" TextWrapping="Wrap" Text="Выберите количество часов " VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16" Height="38" Width="141"/>
 
     </Grid>
 </Page>

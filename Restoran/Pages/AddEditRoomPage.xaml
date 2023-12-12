@@ -20,11 +20,11 @@
         </Image>
         <Button Content="Выбрать изображение" HorizontalAlignment="Left" Click="Image_Load"  Margin="567,314,0,0" FontSize="16" FontFamily="Times New Roman" HorizontalContentAlignment="Center" 
                 VerticalAlignment="Top" Height="44" Width="212"/>
-        <TextBox x:Name="tbName" HorizontalAlignment="Left" Margin="352,11,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="250" Height="42" FontFamily="Times New Roman" FontSize="16"/>
-        <TextBox x:Name="tbDesc" HorizontalAlignment="Left" Margin="9,98,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="534" Height="200" FontFamily="Times New Roman" FontSize="16"/>
-        <TextBox x:Name="tbPrice" HorizontalAlignment="Left" Margin="11,344,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="127" FontFamily="Times New Roman" FontSize="16" Height="34"/>
-        <TextBox x:Name="tbDopMinut" HorizontalAlignment="Left" Margin="162,345,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="133" FontFamily="Times New Roman" FontSize="16" Height="35"/>
-        <TextBox x:Name="tbNumberMax" HorizontalAlignment="Left" Margin="337,348,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="145" FontFamily="Times New Roman" FontSize="16" Height="33"/>
+        <TextBox x:Name="tbName" HorizontalAlignment="Left" Margin="352,11,0,0" TextWrapping="Wrap" Text="{Binding NameRoom}" VerticalAlignment="Top" Width="250" Height="42" FontFamily="Times New Roman" FontSize="16"/>
+        <TextBox x:Name="tbDesc" HorizontalAlignment="Left" Margin="9,98,0,0" TextWrapping="Wrap" Text="{Binding Description}" VerticalAlignment="Top" Width="534" Height="200" FontFamily="Times New Roman" FontSize="16"/>
+        <TextBox x:Name="tbPrice" HorizontalAlignment="Left" Margin="11,344,0,0" TextWrapping="Wrap" Text="{Binding Price}" VerticalAlignment="Top" Width="127" FontFamily="Times New Roman" FontSize="16" Height="34"/>
+        <TextBox x:Name="tbDopMinut" HorizontalAlignment="Left" Margin="162,345,0,0" TextWrapping="Wrap" Text="{Binding DopPriceMinut}" VerticalAlignment="Top" Width="133" FontFamily="Times New Roman" FontSize="16" Height="35"/>
+        <TextBox x:Name="tbNumberMax" HorizontalAlignment="Left" Margin="337,348,0,0" TextWrapping="Wrap" Text="{Binding NumberPeopleMax}" VerticalAlignment="Top" Width="145" FontFamily="Times New Roman" FontSize="16" Height="33"/>
         <TextBlock HorizontalAlignment="Left" Margin="335,304,0,0" TextWrapping="Wrap" Text="Напишите количество людей" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16" Height="39" Width="167"/>
         <TextBlock HorizontalAlignment="Left" Margin="167,304,0,0" TextWrapping="Wrap" Text="Напишите цену доп. времени" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16" Height="38" Width="150"/>
         <TextBlock HorizontalAlignment="Left" Margin="201,22,0,0" TextWrapping="Wrap" Text="Напишит название" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16"/>

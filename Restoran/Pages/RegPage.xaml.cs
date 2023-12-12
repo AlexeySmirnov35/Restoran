@@ -24,26 +24,12 @@ namespace Restoran.Page
         public RegPage()
         {
             InitializeComponent();
-            List<string> timeList = GenerateTimeList(); 
-            comboBoxTime.ItemsSource = timeList;
+            
+            
 
             
         }
-private List<string> GenerateTimeList()
-            {
-                List<string> timeList = new List<string>();
 
-                TimeSpan interval = TimeSpan.FromMinutes(60);
-                DateTime startTime = DateTime.Today;
-
-                for (int i = 0; i < 96; i++) 
-                {
-                    timeList.Add(startTime.ToString("HH:mm"));
-                    startTime = startTime.Add(interval);
-                }
-
-                return timeList;
-            }
         private void Reg_Btn_Click(object sender, RoutedEventArgs e)
         {
            

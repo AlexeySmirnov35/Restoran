@@ -1,5 +1,4 @@
-﻿using Restoran.Page;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,23 +16,29 @@ using System.Windows.Shapes;
 namespace Restoran.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для AdminPage.xaml
+    /// Логика взаимодействия для ReservInfoPage.xaml
     /// </summary>
-    public partial class AdminPage 
+    public partial class ReservInfoPage
     {
-        public AdminPage()
+        public ReservInfoPage()
         {
             InitializeComponent();
+            listView.ItemsSource = RestoranEntities.GetContext().Reservations.ToList();
         }
 
-        private void Btn_Room_Click(object sender, RoutedEventArgs e)
+        private void Btn_Save_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new EditPage());
+
         }
 
-        private void Btn_Resrev_Click(object sender, RoutedEventArgs e)
+        private void Btn_Del_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new ReservInfoPage());
+
+        }
+
+        private void Btn_Edit_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

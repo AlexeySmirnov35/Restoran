@@ -53,18 +53,57 @@ namespace Restoran.Pages
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
+            StringBuilder errors = new StringBuilder();
+
+            if (tbPrice.Text.Contains(",") || tbDopMinut.Text.Contains(",") || tbNumberMax.Text.Contains(","))
+            {
+                errors.AppendLine("Пожалуйста, не используйте запятую.");
+            }
+
+            if (string.IsNullOrWhiteSpace(tbDesc.Text))
+            {
+                errors.AppendLine("Напишите описание!");
+            }
+
+            if (string.IsNullOrWhiteSpace(tbName.Text))
+            {
+                errors.AppendLine("Напишите name!");
+            }
+
+            if (!int.TryParse(tbPrice.Text, out int price) || price < 1000)
+            {
+                errors.AppendLine("Цена должна быть целым числом и больше 1000!");
+            }
+
+            if (!int.TryParse(tbDopMinut.Text, out int dopPriceMinut) || dopPriceMinut < 1 || dopPriceMinut > 5)
+            {
+                errors.AppendLine("Дополнительная цена в минуту должна быть целым числом, больше 1 и меньше 5!");
+            }
+
+            if (!int.TryParse(tbNumberMax.Text, out int numberPeopleMax) || numberPeopleMax < 1 || numberPeopleMax >= 30)
+            {
+                errors.AppendLine("Количество людей должно быть целым числом, больше 1 и меньше 30!");
+            }
+
+            if (errors.Length > 0)
+            {
+                MessageBox.Show(errors.ToString(), "Ошибка валидации", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             if (_rooms.RoomID == 0)
             {
                 var room = new Rooms
                 {
-                   NameRoom=tbName.Text,
-                   Description=tbDesc.Text,
-                   Photo=img
+                    NameRoom = tbName.Text,
+                    Description = tbDesc.Text,
+                    Price = Convert.ToInt32(tbPrice.Text),
+                    DopPriceMinut = Convert.ToInt32(tbDopMinut.Text),
+                    NumberPeopleMax = Convert.ToInt32(tbNumberMax.Text),
+                    Photo = img
                 };
                 RestoranEntities.GetContext().Rooms.Add(room);
-
             }
-
 
             try
             {
