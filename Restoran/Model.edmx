@@ -79,8 +79,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Reservations_User">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+        <Association Name="FK_Reservations_User1">
+          <End Role="User" Type="Self.User" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
@@ -114,7 +116,7 @@
             <End Role="Rooms" EntitySet="Rooms" />
             <End Role="Reservations" EntitySet="Reservations" />
           </AssociationSet>
-          <AssociationSet Name="FK_Reservations_User" Association="Self.FK_Reservations_User">
+          <AssociationSet Name="FK_Reservations_User1" Association="Self.FK_Reservations_User1">
             <End Role="User" EntitySet="User" />
             <End Role="Reservations" EntitySet="Reservations" />
           </AssociationSet>
@@ -141,7 +143,7 @@
           <Property Name="Hours" Type="Int32" />
           <Property Name="DateEndReserv" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Rooms" Relationship="Self.FK_Reservations_Rooms" FromRole="Reservations" ToRole="Rooms" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Reservations_User" FromRole="Reservations" ToRole="User" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Reservations_User1" FromRole="Reservations" ToRole="User" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -193,7 +195,7 @@
           <Property Name="passwod" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="RoleID" Type="Int32" />
           <Property Name="PhoneNumber" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Reservations" Relationship="Self.FK_Reservations_User" FromRole="User" ToRole="Reservations" />
+          <NavigationProperty Name="Reservations" Relationship="Self.FK_Reservations_User1" FromRole="User" ToRole="Reservations" />
           <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
         </EntityType>
         <Association Name="FK_Reservations_Rooms">
@@ -208,8 +210,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Reservations_User">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+        <Association Name="FK_Reservations_User1">
+          <End Role="User" Type="Self.User" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
@@ -243,7 +247,7 @@
             <End Role="Rooms" EntitySet="Rooms" />
             <End Role="Reservations" EntitySet="Reservations" />
           </AssociationSet>
-          <AssociationSet Name="FK_Reservations_User" Association="Self.FK_Reservations_User">
+          <AssociationSet Name="FK_Reservations_User1" Association="Self.FK_Reservations_User1">
             <End Role="User" EntitySet="User" />
             <End Role="Reservations" EntitySet="Reservations" />
           </AssociationSet>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -21,25 +22,27 @@ namespace Restoran.Page
     /// </summary>
     public partial class RegPage 
     {
-        public RegPage()
+        User _user=new User();
+        public RegPage(User selUser)
         {
             InitializeComponent();
-            cbRole.SelectedItem=RestoranEntities.GetContext().Role.ToList();
-            
+            cbRole.ItemsSource=RestoranEntities.GetContext().Role.ToList();
+            if (selUser != null)
+            {
+                _user = selUser;
+            }
 
-            
+            DataContext = _user;
+
+
         }
 
         private void Reg_Btn_Click(object sender, RoutedEventArgs e)
         {
-           
+           var rol=cbRole.SelectedItem as Role;
             User newd = new User();
-            /* DateTime selectedDate = datePicker.SelectedDate.HasValue ? datePicker.SelectedDate.Value : DateTime.Now.Date;
-            DateTime selectedTime = DateTime.ParseExact(comboBoxTime.Text, "HH:mm", CultureInfo.InvariantCulture);
-
-            DateTime combinedDateTime = new DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, selectedTime.Hour, selectedTime.Minute, 0);
-            newd.Data = combinedDateTime;*/
-            if (RestoranEntities.GetContext().User.Count(x => x.login == tbLog.Text) > 0)
+           
+            if (RestoranEntities.GetContext().User.Count(x => x.PhoneNumber == tbNum.Text) > 0)
             {
                 MessageBox.Show("Такой пользователь уже есть", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
                 MainWindow mainWindow = new MainWindow();
@@ -50,12 +53,12 @@ namespace Restoran.Page
             {
                 User sotrrud = new User()
                 {
-                    login = tbLog.Text,
+                    PhoneNumber= tbNum.Text,
                     passwod = tbPas.Text,
                     Name = tbName.Text,
                     Surname = tbSurname.Text,
-                    RoleID = 2,
-                  //  Data=newd.Data
+                    RoleID = rol.RoleID,
+                    Patranomic=tbPatr.Text
                     
 
                 };

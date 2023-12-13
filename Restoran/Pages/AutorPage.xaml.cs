@@ -46,7 +46,7 @@ namespace Restoran.Page
                             break;
 
                         case 2:
-                            MessageBox.Show("Приветсвуем Вас " + userObj.RoleID + "!", "Вы вошли как соотрудник", MessageBoxButton.OK, MessageBoxImage.Information);
+                            MessageBox.Show("Приветсвуем Вас " + userObj.Name + "!", "Вы вошли как соотрудник", MessageBoxButton.OK, MessageBoxImage.Information);
                             NavigationService.Navigate(new RoomsPage());
                             break;
                         default: MessageBox.Show("Не обнужерен", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Warning); break;
