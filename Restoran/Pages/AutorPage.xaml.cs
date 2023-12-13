@@ -34,33 +34,20 @@ namespace Restoran.Page
                 var userObj = RestoranEntities.GetContext().User.FirstOrDefault(x => x.login == tbLog.Text && x.passwod == tbPas.Password);
                 if (userObj == null)
                 {
-
-                    NavigationService.Navigate(new Uri("Pages/EditPage.xaml",UriKind.Relative));
-                  // MessageBox.Show("Похоже что вы не зарегистрированы, пожалуйста, зарегистрируйтесь ", "Ошибка авторизации", MessageBoxButton.OK, MessageBoxImage.Error);
-
-
-                }
-                else if (userObj == null)
-                {
-                    switch (userObj.RoleID)
-                    {
-                        case 1:
-                            MessageBox.Show("Приветсвуем Вас, " + userObj.Name + "!", "Успешная авторизация", MessageBoxButton.OK, MessageBoxImage.Information);
-                            NavigationService.Navigate(new AdminPage());
-                            break;
-                    }
+                   MessageBox.Show("Пользователя нет! " ,"Ошибка при авторизации!",MessageBoxButton.OK,MessageBoxImage.Error);
                 }
                 else
                 {
                     switch (userObj.RoleID)
-                    {
+                    { 
+                        case 1:
+                            MessageBox.Show("Приветсвуем Вас, " + userObj.Name + "!", "Успешная авторизация", MessageBoxButton.OK, MessageBoxImage.Information);
+                            NavigationService.Navigate(new AdminPage());
+                            break;
 
                         case 2:
                             MessageBox.Show("Приветсвуем Вас " + userObj.RoleID + "!", "Вы вошли как соотрудник", MessageBoxButton.OK, MessageBoxImage.Information);
-                            NavigationService.Navigate(new FormPage());
-                            this.Content = null;
-                          
-
+                            NavigationService.Navigate(new RoomsPage());
                             break;
                         default: MessageBox.Show("Не обнужерен", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Warning); break;
 
@@ -74,10 +61,7 @@ namespace Restoran.Page
             }
         }
 
-        private void Reg_Btn_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new Uri("pages/RegPage.xaml", UriKind.Relative));
-        }
+        
 
         private void btn_cli(object sender, RoutedEventArgs e)
         {

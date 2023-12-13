@@ -5,10 +5,30 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Restoran.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      Height="900" Width="900"
       Title="RoomsPage">
 
     <Grid Background="White">
+        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,391"  >
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Поиск: " Width="175" FontSize="36" TextAlignment="Right" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comic Sans MS">
+                    </TextBlock>
+                <TextBox Width="369" Name="TboxSerch" TextChanged="Tbox_Search" Height="54" FontSize="20"></TextBox>
+            </StackPanel>
+            <!--Your comment
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Выберете категорию: " Width="229" FontSize="20" TextAlignment="Right" VerticalAlignment="Center">
+                    <TextBlock.Foreground>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF06B1F9" Offset="0"/>
+                            <GradientStop Color="#FF7AFF11" Offset="1"/>
+                            <GradientStop Color="#FF05B300" Offset="1"/>
+                        </LinearGradientBrush>
+                    </TextBlock.Foreground></TextBlock>
+                <ComboBox Width="301" x:Name="ComboType" SelectionChanged="ComboType_SelectionChanged" DisplayMemberPath="NameType" FontSize="20" Background="{x:Null}"/>
+            </StackPanel>-->
+
+        </WrapPanel>
         <ListView Name="LVieew" Margin="0,65,0,0"   ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center" Background="{x:Null}" Foreground="Black" FontFamily="Times New Roman" FontSize="16">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -17,14 +37,17 @@
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Margin="20" Width="400">
+                    <Grid  Width="350">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="70"></RowDefinition>
-                            <RowDefinition Height="310"></RowDefinition>
-                            <RowDefinition Height="auto"></RowDefinition>
-                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="200"></RowDefinition>
+                            <RowDefinition Height="40"></RowDefinition>
+                            <RowDefinition Height="50"></RowDefinition>
                         </Grid.RowDefinitions>
-                        <Image Width="100" Height="100">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="250"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Image Width="200" Grid.Row="1" Height="200">
                             <Image.Source>
                                 <Binding Path="Photo">
                                     <Binding.TargetNullValue>
@@ -34,16 +57,8 @@
                             </Image.Source>
                         </Image>
                         <Button Grid.Row="3" HorizontalAlignment="Center" Content="Подробнее" Click="Btn_Podr" FontFamily="Comic Sans MS" FontSize="28">
-                            <Button.Background>
-                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                    <GradientStop Color="Black"/>
-                                    <GradientStop Color="#FF4B28FB" Offset="1"/>
-                                    <GradientStop Color="#FF24E20A"/>
-                                    <GradientStop Color="#FF00FF84"/>
-                                </LinearGradientBrush>
-                            </Button.Background>
                         </Button>
-                        <TextBlock Text="{Binding NameRoom}" VerticalAlignment="Center" TextAlignment="Center" Width="300" TextWrapping="Wrap" Margin="5 5"
+                        <TextBlock Text="{Binding NameRoom}"  VerticalAlignment="Center" TextAlignment="Center" Width="250" TextWrapping="Wrap" Margin="5 5"
                                    HorizontalAlignment="Center" FontSize="20" FontWeight="Bold"></TextBlock>
                         <TextBlock Text="{Binding Price,StringFormat={}{0:N2} Руб}"  Grid.Row="2"  Margin="5 5 5 15" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold"></TextBlock>
 

@@ -9,14 +9,21 @@
       Title="RegPage">
 
     <Grid Background="White">
-        <TextBox x:Name="tbSurname" HorizontalAlignment="Left" Margin="238,171,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="162" Height="33"/>
-        <TextBox x:Name="tbPatr" HorizontalAlignment="Left" Margin="238,269,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="162" Height="29"/>
+        <TextBox x:Name="tbSurname" HorizontalAlignment="Left" Margin="238,177,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="162" Height="25"/>
+        <TextBox x:Name="tbPatr" HorizontalAlignment="Left" Margin="238,262,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="162" Height="25"/>
         <Button Content="Button" Click="Reg_Btn_Click" HorizontalAlignment="Left" Margin="414,369,0,0" VerticalAlignment="Top" Height="40" Width="76"/>
-        <TextBox x:Name="tbName" HorizontalAlignment="Left" Margin="238,218,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="162" Height="33"/>
-        <TextBox x:Name="tbNum" HorizontalAlignment="Left" Margin="238,316,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="162" Height="29"/>
-        <TextBox x:Name="tbLog" HorizontalAlignment="Left" Margin="466,254,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="162" Height="30"/>
-        <PasswordBox x:Name="tbPas" HorizontalAlignment="Left" Margin="502,298,0,0" VerticalAlignment="Top" Width="120"/>
-      
+        <TextBox x:Name="tbName" HorizontalAlignment="Left" Margin="238,218,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="162" Height="25"/>
+        <TextBox x:Name="tbNum" HorizontalAlignment="Left" Margin="482,176,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="162" Height="25"/>
+        <TextBox x:Name="tbLog" HorizontalAlignment="Left" Margin="482,217,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="162" Height="25"/>
+        <TextBox x:Name="tbPas" HorizontalAlignment="Left" Margin="484,258,0,0" VerticalAlignment="Top" Width="159" Height="25"/>
+        <TextBlock HorizontalAlignment="Left" Margin="168,221,0,0" TextWrapping="Wrap" Text="Имя" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="167,177,0,0" TextWrapping="Wrap" Text="Фамилимя" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="425,221,0,0" TextWrapping="Wrap" Text="Логин" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="425,172,0,0" TextWrapping="Wrap" Text="Номер телефона" VerticalAlignment="Top" Height="35" Width="67"/>
+        <TextBlock HorizontalAlignment="Left" Margin="170,263,0,0" TextWrapping="Wrap" Text="Отчество" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="425,262,0,0" TextWrapping="Wrap" Text="Пароль" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cbRole" DisplayMemberPath="Role" Text="{Binding RoleName}"  HorizontalAlignment="Left" Margin="273,311,0,0" VerticalAlignment="Top" Width="120"/>
+
 
     </Grid>
 </Page>

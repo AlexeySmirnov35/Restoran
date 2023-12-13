@@ -35,5 +35,9 @@ namespace Restoran.Pages
         {
             NavigationService.Navigate(new ReservInfoPage());
         }
+        private void Reg_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("pages/RegPage.xaml", UriKind.Relative));
+        }
     }
 }

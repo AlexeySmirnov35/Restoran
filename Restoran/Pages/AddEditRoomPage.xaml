@@ -9,7 +9,7 @@
       Title="AddEditRoomPage">
 
     <Grid Background="White">
-        <Image x:Name="ImageV" Margin="566,105,21,159">
+        <Image x:Name="ImageV" Margin="562,100,25,164">
             <Image.Source>
                 <Binding Path="PhotoProduct">
                     <Binding.TargetNullValue>

@@ -4,12 +4,10 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Restoran.Pages"
-      mc:Ignorable="d" 
-      d:DesignHeight="800" d:DesignWidth="800"
-      Title="InfoRoomPage">
+      mc:Ignorable="d"  Height="900" Width="900" Title="InfoRoomPage">
 
     <Grid Background="White">
-        <Image Margin="20,91,522,475">
+        <Image Width="250" Height="250" Margin="10,98,640,552" Stretch="None">
             <Image.Source>
                 <Binding Path="Photo">
                     <Binding.TargetNullValue>
@@ -18,7 +16,12 @@
                 </Binding>
             </Image.Source>
         </Image>
-        <TextBlock HorizontalAlignment="Left" Margin="272,10,0,0" TextWrapping="Wrap" Text="{Binding NameRoom}" VerticalAlignment="Top" Width="274" Height="54"/>
-        <TextBlock Text="{Binding Price,StringFormat={}{0:N2} Руб}"   Margin="247,632,0,114" Width="274" Height="54" HorizontalAlignment="Left" FontSize="20" FontWeight="Bold"></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="159,10,0,0" TextWrapping="Wrap" Text="{Binding NameRoom}" VerticalAlignment="Top" Width="478" Height="63" FontFamily="Times New Roman" FontWeight="Bold" FontSize="22"/>
+        <TextBlock Text="{Binding Price,StringFormat={}{0:N2} руб/час}"   Margin="6,414,0,432" Width="250" Height="54" HorizontalAlignment="Left" FontSize="22" FontWeight="Bold" FontFamily="Times New Roman"></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="118,544,0,0" TextWrapping="Wrap" Text="{Binding NumberPeopleMax}" VerticalAlignment="Top" Width="170" Height="36" FontFamily="Times New Roman" FontWeight="Bold" FontSize="22"/>
+        <TextBlock Text="{Binding DopPriceMinut,StringFormat={}{0:N2} руб/мин}"   Margin="10,472,0,374" Width="250" Height="54" HorizontalAlignment="Left" FontSize="22" FontWeight="Bold" FontFamily="Times New Roman"></TextBlock>
+        <TextBlock Text="Кол-во людей:" TextWrapping="Wrap"  Margin="12,532,0,316" Width="100" HorizontalAlignment="Left" FontSize="22" FontWeight="Bold" FontFamily="Times New Roman"/>
+        <Button Content="Забронировать" Click="Btn_Reserv_Click" HorizontalAlignment="Left" Margin="352,615,0,0" VerticalAlignment="Top" TextBlock.FontFamily="Times New Roman" TextBlock.FontWeight="Bold" TextBlock.FontSize="22" Height="61" Width="170"/>
+        <TextBox IsReadOnly="True" Text="{Binding Description}" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" ScrollViewer.VerticalScrollBarVisibility="Auto"  Margin="296,92,0,332" Width="476" HorizontalAlignment="Left" FontSize="22" FontWeight="Bold" FontFamily="Times New Roman" BorderBrush="{x:Null}"/>
     </Grid>
 </Page>

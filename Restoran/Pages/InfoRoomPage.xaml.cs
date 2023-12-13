@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Restoran.Page;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,6 +32,11 @@ namespace Restoran.Pages
            
             DataContext = _rooms;
             
+        }
+
+        private void Btn_Reserv_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new FormPage());
         }
     }
 }

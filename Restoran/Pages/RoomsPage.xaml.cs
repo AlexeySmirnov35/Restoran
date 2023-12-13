@@ -30,5 +30,10 @@ namespace Restoran.Pages
         {
             NavigationService.Navigate(new InfoRoomPage((sender as Button).DataContext as Rooms));
         }
+
+        private void Tbox_Search(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

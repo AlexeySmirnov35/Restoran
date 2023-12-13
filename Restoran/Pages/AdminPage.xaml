@@ -9,9 +9,11 @@
       Title="AdminPage">
 
     <Grid Background="#FFEFEEEE">
-        <TextBlock HorizontalAlignment="Center" Margin="0,10,0,0" TextWrapping="Wrap" Text="Панель администратора" VerticalAlignment="Top"/>
-        <Button Content="Комнаты" Click="Btn_Room_Click" HorizontalAlignment="Left" Margin="138,144,0,0" VerticalAlignment="Top" Height="28" Width="70"/>
-        <Button Content="Брони" Click="Btn_Resrev_Click" HorizontalAlignment="Left" Margin="139,203,0,0" VerticalAlignment="Top" Height="28" Width="70"/>
+        <TextBlock HorizontalAlignment="Center" Margin="0,10,0,0" TextWrapping="Wrap" Text="Панель администратора" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="18"/>
+        <Button Content="Комнаты" Click="Btn_Room_Click" HorizontalAlignment="Left" Margin="239,179,0,0" VerticalAlignment="Top" Height="44" Width="103" TextBlock.FontFamily="Times New Roman" TextBlock.FontSize="18"/>
+        <Button Content="Брони" Click="Btn_Resrev_Click" HorizontalAlignment="Left" Margin="240,238,0,0" VerticalAlignment="Top" Height="47" Width="102" TextBlock.FontFamily="Times New Roman" TextBlock.FontSize="18"/>
 
+        <Button Content="Пользователи" Click="Reg_Btn_Click" HorizontalAlignment="Left" Margin="386,200,0,0" VerticalAlignment="Top" 
+                FontFamily="Times New Roman" FontSize="22" Height="61" Width="143" TextBlock.FontFamily="Times New Roman" TextBlock.FontSize="18"/>
     </Grid>
 </Page>

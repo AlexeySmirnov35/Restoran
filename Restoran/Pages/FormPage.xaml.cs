@@ -38,6 +38,10 @@ namespace Restoran.Page
             }
             datePicker.DisplayDateStart = DateTime.Now;
             datePicker.DisplayDateEnd = DateTime.Now.AddMonths(1);
+            cbRoom.SelectionChanged += RoomComboBox_SelectionChanged;
+            datePicker.SelectedDateChanged += DatePicker_SelectedChanged;
+            datePicker.IsEnabled = false;
+            cbTime.IsEnabled = false;
         }
 
         private void CreateReq_Click(object sender, RoutedEventArgs e)
@@ -102,7 +106,7 @@ namespace Restoran.Page
                     var allHours = Enumerable.Range(9, 12).ToList();
                     var availableHours = allHours.Except(bookedHours);
 
-
+                    cbTime.IsEnabled = true;
 
 
                     cbTime.Items.Clear();
@@ -207,7 +211,10 @@ namespace Restoran.Page
             
         }
 
-
-
+        private void RoomComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            datePicker.IsEnabled = cbRoom.SelectedItem != null;
+            cbTime.IsEnabled = false;
+        }
     }
 }

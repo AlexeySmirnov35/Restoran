@@ -24,7 +24,7 @@ namespace Restoran.Page
         public RegPage()
         {
             InitializeComponent();
-            
+            cbRole.SelectedItem=RestoranEntities.GetContext().Role.ToList();
             
 
             
@@ -51,7 +51,7 @@ namespace Restoran.Page
                 User sotrrud = new User()
                 {
                     login = tbLog.Text,
-                    passwod = tbPas.Password,
+                    passwod = tbPas.Text,
                     Name = tbName.Text,
                     Surname = tbSurname.Text,
                     RoleID = 2,

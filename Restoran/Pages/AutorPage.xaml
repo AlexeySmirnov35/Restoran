@@ -11,10 +11,8 @@
     <Grid Background="White">
         <TextBox x:Name="tbLog"  HorizontalAlignment="Left" Margin="320,164,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="220" Height="36" FontFamily="Times New Roman" FontSize="22"/>
         <PasswordBox x:Name="tbPas" HorizontalAlignment="Left" Margin="320,247,0,0" VerticalAlignment="Top" Width="220" Height="36" FontFamily="Times New Roman" FontSize="22"/>
-        <Button Content="Войти" Click="Auto_Btn_Click" HorizontalAlignment="Left" Margin="320,310,0,0" VerticalAlignment="Top" FontFamily="Times New Roman" 
-                FontSize="22" Height="33" Width="75"/>
-        <Button Content="Регистрация" Click="Reg_Btn_Click" HorizontalAlignment="Left" Margin="410,310,0,0" VerticalAlignment="Top" 
-                FontFamily="Times New Roman" FontSize="22" Height="33" Width="130"/>
+        <Button Content="Войти" Click="Auto_Btn_Click" HorizontalAlignment="Left" Margin="320,310,0,0" VerticalAlignment="Top" FontFamily="Times New Roman"  FontSize="22" Height="33" Width="75"/>
+       
         <Label Content="Логин" HorizontalAlignment="Left" Margin="234,162,0,0" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="22"/>
         <Label Content="Пароль" HorizontalAlignment="Left" Margin="234,246,0,0" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="22"/>
 
