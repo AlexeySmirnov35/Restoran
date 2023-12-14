@@ -24,6 +24,7 @@ namespace Restoran.Page
     /// </summary>
     public partial class FormPage
     {
+        public int _idrole;
         public FormPage(int t)
         {
             InitializeComponent();
@@ -42,6 +43,7 @@ namespace Restoran.Page
             datePicker.SelectedDateChanged += DatePicker_SelectedChanged;
             datePicker.IsEnabled = false;
             cbTime.IsEnabled = false;
+            _idrole = t;
             if(t==2)
             {
                 tbDop.Visibility=Visibility.Collapsed;
@@ -60,7 +62,7 @@ namespace Restoran.Page
 
                 if (!regex.IsMatch(tbPhone.Text))
                 {
-                    MessageBox.Show("number");
+                    MessageBox.Show("Укажите корректный номер начиная с +7");
                     return;
                 }
                 if (existingUser == null)
@@ -136,45 +138,69 @@ namespace Restoran.Page
                 var hour = cbTime.SelectedItem;
                 var room = cbRoom.SelectedItem as Rooms;
                 var hourbron = cbHour.SelectedItem;
-                int selectedHours = Convert.ToInt32(cbHour.SelectedItem.ToString());
-                string selectedTimeString = cbTime.SelectedItem.ToString();
-                DateTime selectedTime = DateTime.ParseExact(hour.ToString(), "HH:mm", CultureInfo.InvariantCulture);
-                int selectedHour = selectedTime.Hour;
-                if (room == null || hour == null)
+                int selectedHours;
+
+                if (!int.TryParse(cbHour.SelectedItem?.ToString(), out selectedHours) || selectedHours <= 0)
                 {
-                    errors.AppendLine("Выберите комнату и время");
+                    errors.AppendLine("Выберите количество часов.");
                 }
-                if (room.NumberPeopleMax < Convert.ToInt32(tbNum.Text))
+
+                if (room == null || hour == null || hourbron == null || string.IsNullOrWhiteSpace(tbNum.Text) ||
+                    string.IsNullOrWhiteSpace(tbName.Text) || string.IsNullOrWhiteSpace(tbSur.Text) || string.IsNullOrWhiteSpace(tbDop.Text))
                 {
-                    errors.AppendLine("aaaa");
+                    errors.AppendLine("Выберите комнату, время и количество часов.");
                 }
-                if (selectedHours + selectedHour > 22)
+                if ( string.IsNullOrWhiteSpace(tbName.Text) || string.IsNullOrWhiteSpace(tbSur.Text))
                 {
-                    errors.AppendLine("Выбранное количество часов и минут не может превышать 22 часа.");
+                    errors.AppendLine("Напишите фамилию и имя ");
                 }
+                if (!int.TryParse(tbNum.Text, out int numberOfPeople) || numberOfPeople <= 1)
+                {
+                    errors.AppendLine("Количество людей должно быть больше 1.");
+                }
+                
+                if (room != null && room.NumberPeopleMax < numberOfPeople)
+                {
+                    errors.AppendLine("Количество людей не может превышать максимальное количество людей в комнате.");
+                }
+
+                int selectedMinutes;
+                if (!int.TryParse(tbDop.Text, out selectedMinutes) || selectedMinutes < 0)
+                {
+                    errors.AppendLine("Введите корректное значение для дополнительных минут.");
+                }
+
                 if (errors.Length > 0)
                 {
                     MessageBox.Show(errors.ToString());
                     return;
                 }
-                int hour1 = Convert.ToInt32(hourbron.ToString());
+
                 string fios = $"{tbSur.Text} {tbName.Text} {tbPat.Text}";
                 Reservations newd = new Reservations();
-                DateTime selectedDate = datePicker.SelectedDate ?? DateTime.Now.Date;  
+                DateTime selectedDate = datePicker.SelectedDate ?? DateTime.Now.Date;
+                DateTime selectedTime = DateTime.ParseExact(hour.ToString(), "HH:mm", CultureInfo.InvariantCulture);
                 DateTime combinedDateTime = new DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, selectedTime.Hour, selectedTime.Minute, 0);
                 newd.DateTimeReserv = combinedDateTime;
-                int selectedMinutes = Convert.ToInt32(tbDop.Text); 
+
                 var endDate = newd.DateTimeReserv.Value.AddHours(selectedHours).AddMinutes(selectedMinutes);
                 var overlappingReservations = RestoranEntities.GetContext().Reservations
                     .Where(r => r.RoomID == room.RoomID &&
                         ((newd.DateTimeReserv >= r.DateTimeReserv && newd.DateTimeReserv < r.DateEndReserv) ||
                         (endDate > r.DateTimeReserv && endDate <= r.DateEndReserv)))
                     .ToList();
+                int selHours= selectedTime.Hour;
+                if (selectedHours + selHours > 22)
+                {
+                    MessageBox.Show("Выбранное количество часов и минут не может быть забронировано.");
+                    return;
+                }
                 if (overlappingReservations.Any())
                 {
                     MessageBox.Show("Выбранное количество часов и минут не может быть забронировано.");
                     return;
                 }
+
                 Reservations reservation = new Reservations()
                 {
                     UserID = userId,
@@ -182,7 +208,7 @@ namespace Restoran.Page
                     RoomID = room.RoomID,
                     NumberOfPeople = Convert.ToInt32(tbNum.Text),
                     Hours = selectedHours,
-                    DopTimeMinut = selectedMinutes, 
+                    DopTimeMinut = selectedMinutes,
                     DateTimeReserv = newd.DateTimeReserv,
                     DateEndReserv = endDate
                 };
@@ -195,8 +221,10 @@ namespace Restoran.Page
             {
                 MessageBox.Show($"Произошла ошибка при сохранении бронирования: {ex.Message}");
             }
+
             DatePicker_SelectedChanged(datePicker, null);
         }
+
         private void RoomComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             datePicker.IsEnabled = cbRoom.SelectedItem != null;
