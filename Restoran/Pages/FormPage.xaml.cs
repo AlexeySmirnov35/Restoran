@@ -55,14 +55,14 @@ namespace Restoran.Page
             try
             {
                 User existingUser = RestoranEntities.GetContext().User.FirstOrDefault(x => x.PhoneNumber == tbPhone.Text);
-               /* string pattern = @"^\+7\s?\d{10}$";
+               string pattern = @"^\+7\s?\d{10}$";
                 Regex regex = new Regex(pattern);
 
                 if (!regex.IsMatch(tbPhone.Text))
                 {
                     MessageBox.Show("number");
                     return;
-                }*/
+                }
                 if (existingUser == null)
                 {
                     User newUser = new User()
@@ -90,11 +90,9 @@ namespace Restoran.Page
             }
         }
 
-  
         private void DatePicker_SelectedChanged(object sender, SelectionChangedEventArgs e)
         {
             DateTime? selectedDate = datePicker.SelectedDate;
-
             if (selectedDate.HasValue)
             {
                 var room = cbRoom.SelectedItem as Rooms;
@@ -102,34 +100,22 @@ namespace Restoran.Page
                 if (room != null)
                 {
                     int roomId = room.RoomID;
-
                     var reservations = RestoranEntities.GetContext().Reservations
                     .Where(r => r.RoomID == roomId && DbFunctions.TruncateTime(r.DateTimeReserv) == selectedDate)
                     .ToList();
-
                     var allHours = Enumerable.Range(9, 12).ToList();
-
                     foreach (var reservation in reservations)
                     {
                         int startHour = reservation.DateTimeReserv.Value.Hour;
                         int endHour = reservation.DateEndReserv.Value.Hour;
-
-                        // Если есть дополнительные минуты, учтем их
                         if (reservation.DopTimeMinut > 0)
                         {
-                            
                                 allHours.RemoveAll(h => h >= startHour && h <= endHour);
-                            
-                            
                         }
                         allHours.RemoveAll(h => h >= startHour && h < endHour);
-
-                        
                     }
-
                     cbTime.IsEnabled = true;
                     cbTime.Items.Clear();
-
                     foreach (var hour in allHours)
                     {
                         cbTime.Items.Add(new DateTime(1, 1, 1, hour, 0, 0).ToString("HH:mm"));
@@ -141,9 +127,6 @@ namespace Restoran.Page
                 }
             }
         }
-
-
-
         private void CreateReservation(int userId)
         {
             try
@@ -155,11 +138,8 @@ namespace Restoran.Page
                 var hourbron = cbHour.SelectedItem;
                 int selectedHours = Convert.ToInt32(cbHour.SelectedItem.ToString());
                 string selectedTimeString = cbTime.SelectedItem.ToString();
-                DateTime selectedTimeh = DateTime.ParseExact(selectedTimeString, "HH:mm", CultureInfo.InvariantCulture);
-
-                int selectedHour = selectedTimeh.Hour;
-
-
+                DateTime selectedTime = DateTime.ParseExact(hour.ToString(), "HH:mm", CultureInfo.InvariantCulture);
+                int selectedHour = selectedTime.Hour;
                 if (room == null || hour == null)
                 {
                     errors.AppendLine("Выберите комнату и время");
@@ -177,33 +157,24 @@ namespace Restoran.Page
                     MessageBox.Show(errors.ToString());
                     return;
                 }
-                
-               
                 int hour1 = Convert.ToInt32(hourbron.ToString());
                 string fios = $"{tbSur.Text} {tbName.Text} {tbPat.Text}";
                 Reservations newd = new Reservations();
-                DateTime selectedDate = datePicker.SelectedDate ?? DateTime.Now.Date;
-                DateTime selectedTime = DateTime.ParseExact(hour.ToString(), "HH:mm", CultureInfo.InvariantCulture);
+                DateTime selectedDate = datePicker.SelectedDate ?? DateTime.Now.Date;  
                 DateTime combinedDateTime = new DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, selectedTime.Hour, selectedTime.Minute, 0);
                 newd.DateTimeReserv = combinedDateTime;
-
-                
-                int selectedMinutes = Convert.ToInt32(tbDop.Text); // Добавьте вашу логику для получения выбранных минут, если это применимо
-
+                int selectedMinutes = Convert.ToInt32(tbDop.Text); 
                 var endDate = newd.DateTimeReserv.Value.AddHours(selectedHours).AddMinutes(selectedMinutes);
-
                 var overlappingReservations = RestoranEntities.GetContext().Reservations
                     .Where(r => r.RoomID == room.RoomID &&
                         ((newd.DateTimeReserv >= r.DateTimeReserv && newd.DateTimeReserv < r.DateEndReserv) ||
                         (endDate > r.DateTimeReserv && endDate <= r.DateEndReserv)))
                     .ToList();
-
                 if (overlappingReservations.Any())
                 {
                     MessageBox.Show("Выбранное количество часов и минут не может быть забронировано.");
                     return;
                 }
-
                 Reservations reservation = new Reservations()
                 {
                     UserID = userId,
@@ -211,7 +182,7 @@ namespace Restoran.Page
                     RoomID = room.RoomID,
                     NumberOfPeople = Convert.ToInt32(tbNum.Text),
                     Hours = selectedHours,
-                    DopTimeMinut = selectedMinutes, // Установите дополнительные минуты
+                    DopTimeMinut = selectedMinutes, 
                     DateTimeReserv = newd.DateTimeReserv,
                     DateEndReserv = endDate
                 };
@@ -226,12 +197,6 @@ namespace Restoran.Page
             }
             DatePicker_SelectedChanged(datePicker, null);
         }
-
-        private void PhoneNumberTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            
-        }
-
         private void RoomComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             datePicker.IsEnabled = cbRoom.SelectedItem != null;
