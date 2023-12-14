@@ -15,14 +15,9 @@
                     <GridViewColumn DisplayMemberBinding="{Binding FIO}" Header="Имя"/>
                     <GridViewColumn Header="Цена" DisplayMemberBinding="{Binding Room.NameRoom}" />
                     <GridViewColumn Header="Кол-во" DisplayMemberBinding="{Binding DateTimeReserv}"/>
-                    <GridViewColumn Header="Описание">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding NumberOfPeople}" TextWrapping="Wrap" Width="80"></TextBlock>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
+                    <GridViewColumn Header="Кол-во" DisplayMemberBinding="{Binding NumberOfPeople}"/>
                     <GridViewColumn Header="Кол-во" DisplayMemberBinding="{Binding Hours}"/>
+                    <GridViewColumn Header="" DisplayMemberBinding="{Binding DopTimeMinut}"/>
                     <GridViewColumn Header="Редактировать">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>

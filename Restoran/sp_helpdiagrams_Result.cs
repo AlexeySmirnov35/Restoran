@@ -10,21 +10,13 @@
 namespace Restoran
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Reservations
+    public partial class sp_helpdiagrams_Result
     {
-        public int ReservationsID { get; set; }
-        public string FIO { get; set; }
-        public Nullable<int> UserID { get; set; }
-        public Nullable<int> NumberOfPeople { get; set; }
-        public Nullable<System.DateTime> DateTimeReserv { get; set; }
-        public Nullable<int> RoomID { get; set; }
-        public Nullable<int> Hours { get; set; }
-        public Nullable<System.DateTime> DateEndReserv { get; set; }
-        public Nullable<int> DopTimeMinut { get; set; }
-    
-        public virtual Rooms Rooms { get; set; }
-        public virtual User User { get; set; }
+        public string Database { get; set; }
+        public string Name { get; set; }
+        public int ID { get; set; }
+        public string Owner { get; set; }
+        public int OwnerID { get; set; }
     }
 }

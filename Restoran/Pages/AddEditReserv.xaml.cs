@@ -15,16 +15,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Xml.Linq;
 
-namespace Restoran.Page
+namespace Restoran.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для FormPage.xaml
+    /// Логика взаимодействия для AddEditReserv.xaml
     /// </summary>
-    public partial class FormPage
+    public partial class AddEditReserv 
     {
-        public FormPage()
+        public AddEditReserv()
         {
             InitializeComponent();
             cbRoom.ItemsSource = RestoranEntities.GetContext().Rooms.ToList();
@@ -70,7 +69,7 @@ namespace Restoran.Page
 
                     RestoranEntities.GetContext().User.Add(newUser);
                     RestoranEntities.GetContext().SaveChanges();
-                    
+
                     CreateReservation(newUser.UserID);
                 }
                 else
@@ -139,19 +138,18 @@ namespace Restoran.Page
 
 
 
-        
+
         private void CreateReservation(int userId)
         {
             try
             {
                 StringBuilder errors = new StringBuilder();
-                
+
                 var hour = cbTime.SelectedItem;
                 var room = cbRoom.SelectedItem as Rooms;
                 if (room == null || hour == null)
                 {
                     errors.AppendLine("Выберите комнату и время");
-                    
                 }
                 if (room.NumberPeopleMax < Convert.ToInt32(tbNum.Text))
                 {
@@ -172,18 +170,21 @@ namespace Restoran.Page
                 newd.DateTimeReserv = combinedDateTime;
 
                 int selectedHours = Convert.ToInt32(hourbron.ToString());
-                var endDate = newd.DateTimeReserv.Value.AddHours(selectedHours);
+                int selectedMinutes = Convert.ToInt32(tbDop.Text);
 
-                var overlappingReservations = RestoranEntities.GetContext().Reservations.Where(r => r.RoomID == room.RoomID &&
-                      ((newd.DateTimeReserv >= r.DateTimeReserv && newd.DateTimeReserv < r.DateEndReserv) ||
-                       (endDate > r.DateTimeReserv && endDate <= r.DateEndReserv))).ToList();
+                var endDate = newd.DateTimeReserv.Value.AddHours(selectedHours).AddMinutes(selectedMinutes);
+
+                var overlappingReservations = RestoranEntities.GetContext().Reservations
+                    .Where(r => r.RoomID == room.RoomID &&
+                        ((newd.DateTimeReserv >= r.DateTimeReserv && newd.DateTimeReserv < r.DateEndReserv) ||
+                        (endDate > r.DateTimeReserv && endDate <= r.DateEndReserv)))
+                    .ToList();
 
                 if (overlappingReservations.Any())
                 {
-                    MessageBox.Show("Выбранное количество часов не может быть забронированно.");
+                    MessageBox.Show("Выбранное количество часов и минут не может быть забронировано.");
                     return;
                 }
-
 
                 Reservations reservation = new Reservations()
                 {
@@ -192,9 +193,9 @@ namespace Restoran.Page
                     RoomID = room.RoomID,
                     NumberOfPeople = Convert.ToInt32(tbNum.Text),
                     Hours = selectedHours,
+                    DopTimeMinut = selectedMinutes, 
                     DateTimeReserv = newd.DateTimeReserv,
-                    DateEndReserv = newd.DateTimeReserv.Value.AddHours(selectedHours),
-                    DopTimeMinut=0
+                    DateEndReserv = endDate
                 };
 
                 RestoranEntities.GetContext().Reservations.Add(reservation);
@@ -207,9 +208,10 @@ namespace Restoran.Page
             }
             DatePicker_SelectedChanged(datePicker, null);
         }
+
         private void PhoneNumberTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            
+
         }
 
         private void RoomComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

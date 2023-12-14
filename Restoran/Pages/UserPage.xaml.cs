@@ -37,11 +37,12 @@ namespace Restoran.Pages
         { 
             var dbContext = RestoranEntities.GetContext();
             var userToDelete = listView.SelectedItems.Cast<User>().ToList();
-             int totalReservationsDeleted = dbContext.Reservations.Count(r => userToDelete.Any(u => u.UserID == r.UserID));
+            // int totalReservationsDeleted = dbContext.Reservations.Count(r => r.UserID == userToDelete.UserID);
             //int totalReservationsDeleted = dbContext.Reservations.Count(r => userToDelete.Select(u => u.UserID).Contains(r.UserID));
 
 
-            if (MessageBox.Show($"Вы действительно хотите удалить эти {userToDelete.Count()} пользователей и все связанные записи брони? Это также удалит {totalReservationsDeleted} записей брони.", "Предупреждение", MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
+            if (MessageBox.Show($"Вы действительно хотите удалить эти {userToDelete.Count()} пользователей и все связанные записи брони? " +
+                $"Это также удалит записи о брони.", "Предупреждение", MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
             {
                 return;
             }
