@@ -28,7 +28,7 @@ namespace Restoran.Pages
 
         private void Btn_Save_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new AddEditReserv(2));
         }
 
         private void Btn_Del_Click(object sender, RoutedEventArgs e)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Restoran.Page;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,15 +21,24 @@ namespace Restoran.Pages
     /// </summary>
     public partial class RoomsPage 
     {
-        public RoomsPage()
+        private int _roleId;
+        public int userRoleId;
+
+        public RoomsPage(int to)
         {
             InitializeComponent();
             LVieew.ItemsSource = RestoranEntities.GetContext().Rooms.ToList();
+            TboxSerch.Text=to.ToString();
+            userRoleId = to;
         }
+        
+      
+
 
         private void Btn_Podr(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new InfoRoomPage((sender as Button).DataContext as Rooms));
+            //NavigationService.Navigate(new InfoRoomPage((sender as Button).DataContext as Rooms));
+            NavigationService.Navigate(new FormPage(userRoleId));
         }
 
         private void Tbox_Search(object sender, TextChangedEventArgs e)

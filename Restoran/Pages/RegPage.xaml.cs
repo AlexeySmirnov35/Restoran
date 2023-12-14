@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Restoran.Pages;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Globalization;
@@ -22,6 +23,7 @@ namespace Restoran.Page
     /// </summary>
     public partial class RegPage 
     {
+        private int _id;
         User _user=new User();
         public RegPage(User selUser)
         {
@@ -33,7 +35,7 @@ namespace Restoran.Page
             }
 
             DataContext = _user;
-
+           
 
         }
 
@@ -41,7 +43,7 @@ namespace Restoran.Page
         {
            var rol=cbRole.SelectedItem as Role;
             User newd = new User();
-           
+            
             if (RestoranEntities.GetContext().User.Count(x => x.PhoneNumber == tbNum.Text) > 0)
             {
                 MessageBox.Show("Такой пользователь уже есть", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);

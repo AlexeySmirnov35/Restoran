@@ -22,6 +22,7 @@ namespace Restoran.Pages
     public partial class InfoRoomPage
     {
         private Rooms _rooms= new Rooms();
+       
         public InfoRoomPage(Rooms selrooms)
         {
             InitializeComponent();
@@ -36,7 +37,7 @@ namespace Restoran.Pages
 
         private void Btn_Reserv_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new FormPage());
+            NavigationService.Navigate(new AddEditReserv(1));
         }
     }
 }

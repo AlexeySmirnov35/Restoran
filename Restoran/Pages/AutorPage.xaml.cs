@@ -31,6 +31,7 @@ namespace Restoran.Page
         {
             try
             {
+               
                 var userObj = RestoranEntities.GetContext().User.FirstOrDefault(x => x.login == tbLog.Text && x.passwod == tbPas.Password);
                 if (userObj == null)
                 {
@@ -42,14 +43,17 @@ namespace Restoran.Page
                     { 
                         case 1:
                             MessageBox.Show("Приветсвуем Вас, " + userObj.Name + "!", "Успешная авторизация", MessageBoxButton.OK, MessageBoxImage.Information);
-                            NavigationService.Navigate(new AdminPage());
+                            NavigationService.Navigate(new AdminPage(userObj.RoleID.HasValue ? userObj.RoleID.Value : 0));
+                            
                             break;
 
                         case 2:
                             MessageBox.Show("Приветсвуем Вас " + userObj.Name + "!", "Вы вошли как соотрудник", MessageBoxButton.OK, MessageBoxImage.Information);
-                            NavigationService.Navigate(new RoomsPage());
+                            NavigationService.Navigate(new RoomsPage(userObj.RoleID.HasValue ? userObj.RoleID.Value : 0));
+
                             break;
-                        default: MessageBox.Show("Не обнужерен", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Warning); break;
+                        default: MessageBox.Show("Не обнужерен", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            break;
 
                     }
 

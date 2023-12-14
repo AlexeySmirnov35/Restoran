@@ -47,5 +47,7 @@
         <TextBlock HorizontalAlignment="Left" Margin="386,282,0,0" TextWrapping="Wrap" Text="Выберите количество часов " VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16" Height="38" Width="141"/>
 
         <Button Content="Забронировать" Click="CreateReq_Click" HorizontalAlignment="Left" Margin="331,344,0,0" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="20" Height="35" Width="165" FontWeight="Bold" FontStyle="Italic"/>
+        <TextBlock x:Name="tblock" HorizontalAlignment="Left" Margin="528,324,0,0" TextWrapping="Wrap" Text="Доп. время в минутах" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16" Height="36" Width="87"/>
+        <TextBox x:Name="tbDop" Text="0" HorizontalAlignment="Left" Margin="620,327,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="63" FontFamily="Times New Roman" FontSize="16" Height="33"/>
     </Grid>
 </Page>

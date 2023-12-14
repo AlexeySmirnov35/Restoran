@@ -21,9 +21,11 @@ namespace Restoran.Pages
     /// </summary>
     public partial class AdminPage 
     {
-        public AdminPage()
+        private int _role;
+        public AdminPage(int roleId)
         {
             InitializeComponent();
+            _role = roleId;
         }
 
         private void Btn_Room_Click(object sender, RoutedEventArgs e)
@@ -33,7 +35,7 @@ namespace Restoran.Pages
 
         private void Btn_Resrev_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new ReservInfoPage());
+            NavigationService.Navigate(new FormPage(_role));
         }
         private void Reg_Btn_Click(object sender, RoutedEventArgs e)
         {

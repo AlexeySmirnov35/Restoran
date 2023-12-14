@@ -23,7 +23,8 @@ namespace Restoran.Pages
     /// </summary>
     public partial class AddEditReserv 
     {
-        public AddEditReserv()
+        
+        public AddEditReserv(int role)
         {
             InitializeComponent();
             cbRoom.ItemsSource = RestoranEntities.GetContext().Rooms.ToList();
@@ -41,6 +42,13 @@ namespace Restoran.Pages
             datePicker.SelectedDateChanged += DatePicker_SelectedChanged;
             datePicker.IsEnabled = false;
             cbTime.IsEnabled = false;
+            if (role == 2)
+            {
+                tbDop.Visibility = Visibility.Collapsed;
+                
+            }
+
+
         }
 
         private void CreateReq_Click(object sender, RoutedEventArgs e)
@@ -193,7 +201,7 @@ namespace Restoran.Pages
                     RoomID = room.RoomID,
                     NumberOfPeople = Convert.ToInt32(tbNum.Text),
                     Hours = selectedHours,
-                    DopTimeMinut = selectedMinutes, 
+                    DopTimeMinut = selectedMinutes,
                     DateTimeReserv = newd.DateTimeReserv,
                     DateEndReserv = endDate
                 };
