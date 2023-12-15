@@ -17,9 +17,18 @@ namespace Restoran
     
     public partial class RestoranEntities : DbContext
     {
+        private static RestoranEntities _konfKc;
         public RestoranEntities()
             : base("name=RestoranEntities")
         {
+        }
+        public static RestoranEntities GetContext()
+        {
+            if(_konfKc==null)
+            {
+                _konfKc= new RestoranEntities();
+            }
+            return _konfKc;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
