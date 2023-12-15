@@ -44,5 +44,40 @@ namespace Restoran.Pages
         {
                 NavigationService.Navigate(new FormPage((sender as Button).DataContext as Reservations,_role));
         }
+        private void UpdateRooms()
+        {
+            string searchText = TboxSerch.Text.ToLower();
+            var allRooms = RestoranEntities.GetContext().Reservations.ToList();
+
+            var filteredRooms = allRooms
+                .Where(room =>
+                    room.Rooms.NameRoom.ToLower().Contains(searchText)).ToList();
+            switch (ComboFilter.SelectedIndex)
+            {
+
+                case 1:
+
+                    filteredRooms = filteredRooms.OrderBy(resr=>resr.DateTimeReserv).ToList();
+                    break;
+                case 2:
+
+                    filteredRooms = filteredRooms.OrderByDescending(room => room.DateTimeReserv).ToList();
+                    break;
+                case 3:
+
+                    filteredRooms = filteredRooms.OrderBy(room => room.Rooms.NameRoom).ToList();
+                    break;
+            }
+            listView.ItemsSource = filteredRooms;
+        }
+        private void Tbox_Search(object sender, TextChangedEventArgs e)
+        {
+            UpdateRooms();
+        }
+
+        private void ComboType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateRooms();
+        }
     }
 }

@@ -28,7 +28,7 @@ namespace Restoran.Pages
         {
             InitializeComponent();
             LVieew.ItemsSource = RestoranEntities.GetContext().Rooms.ToList();
-            TboxSerch.Text=to.ToString();
+            
             userRoleId = to;
         }
         
@@ -40,10 +40,42 @@ namespace Restoran.Pages
             NavigationService.Navigate(new InfoRoomPage((sender as Button).DataContext as Rooms,userRoleId));
             //NavigationService.Navigate(new FormPage(null,userRoleId));
         }
+        private void UpdateRooms()
+        {
+            string searchText = TboxSerch.Text.ToLower();
+            var allRooms = RestoranEntities.GetContext().Rooms.ToList();
 
+            var filteredRooms = allRooms
+                .Where(room =>
+                    room.NameRoom.ToLower().Contains(searchText) ||
+                    room.Description.ToLower().Contains(searchText))
+                .ToList();
+            switch (ComboFilter.SelectedIndex)
+            {
+
+                case 1:
+                    
+                    filteredRooms = filteredRooms.OrderBy(room => room.Price).ToList();
+                    break;
+                case 2:
+                    
+                    filteredRooms = filteredRooms.OrderByDescending(room => room.Price).ToList();
+                    break;
+                case 3:
+                    
+                    filteredRooms = filteredRooms.OrderBy(room => room.NameRoom).ToList();
+                    break;
+            }
+            LVieew.ItemsSource = filteredRooms;
+        }
         private void Tbox_Search(object sender, TextChangedEventArgs e)
         {
+            UpdateRooms();
+        }
 
+        private void ComboType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateRooms();
         }
     }
 }

@@ -84,32 +84,29 @@ namespace Restoran.Page
                     MessageBox.Show("Неверный номер телефона");
                     return;
                 }
-
-             
-                    // В режиме создания новой записи
-                    if (existingUser == null)
+                if (existingUser == null)
+                {
+                    User newUser = new User()
                     {
-                        // Создаем нового пользователя, если не существует
-                        User newUser = new User()
-                        {
-                            Name = tbName.Text,
-                            Surname = tbSur.Text,
-                            Patranomic = tbPat.Text,
-                            PhoneNumber = tbPhone.Text,
-                            RoleID = 2,
-                        };
+                        Name = tbName.Text,
+                        Surname = tbSur.Text,
+                        Patranomic = tbPat.Text,
+                        PhoneNumber = tbPhone.Text,
+                        RoleID = 2,
+                    };
 
-                        RestoranEntities.GetContext().User.Add(newUser);
-                        RestoranEntities.GetContext().SaveChanges();
+                    RestoranEntities.GetContext().User.Add(newUser);
+                    RestoranEntities.GetContext().SaveChanges();
 
-                        CreateReservation(newUser.UserID);
-                    }
-                    else
-                    {
-                        // Используем существующего пользователя
-                        CreateReservation(existingUser.UserID);
-                    }
-                
+                    CreateReservation(newUser.UserID);
+                }
+                else
+                {
+                    CreateReservation(existingUser.UserID);
+                }
+
+
+
             }
             catch (Exception ex)
             {
@@ -119,34 +116,43 @@ namespace Restoran.Page
 
         private void DatePicker_SelectedChanged(object sender, SelectionChangedEventArgs e)
         {
-            
             DateTime? selectedDate = datePicker.SelectedDate;
-            if (selectedDate.HasValue && !IsEditMode)
+            if (selectedDate.HasValue)
             {
                 var room = cbRoom.SelectedItem as Rooms;
-
                 if (room != null)
                 {
+                    var allHours = Enumerable.Range(9, 12).ToList();
                     int roomId = room.RoomID;
+
                     var reservations = RestoranEntities.GetContext().Reservations
                         .Where(r => r.RoomID == roomId && DbFunctions.TruncateTime(r.DateTimeReserv) == selectedDate)
                         .ToList();
-                    var allHours = Enumerable.Range(9, 12).ToList();
                     foreach (var reservation in reservations)
                     {
                         int startHour = reservation.DateTimeReserv.Value.Hour;
                         int endHour = reservation.DateEndReserv.Value.Hour;
+
                         if (reservation.DopTimeMinut > 0)
                         {
                             allHours.RemoveAll(h => h >= startHour && h <= endHour);
                         }
                         allHours.RemoveAll(h => h >= startHour && h < endHour);
+
+                        if (reservation.ReservationsID == _reservations.ReservationsID)
+                        {
+                            allHours.Add(startHour);
+                        }
                     }
                     cbTime.IsEnabled = true;
                     cbTime.Items.Clear();
                     foreach (var hour in allHours)
                     {
                         cbTime.Items.Add(new DateTime(1, 1, 1, hour, 0, 0).ToString("HH:mm"));
+                    }
+                    if (_reservations != null && _reservations.DateTimeReserv.HasValue)
+                    {
+                        cbTime.SelectedItem = _reservations.DateTimeReserv.Value.ToString("HH:mm");
                     }
                 }
                 else
@@ -241,8 +247,6 @@ namespace Restoran.Page
                         MessageBox.Show("Выбранное количество часов и минут пересекается с другим бронированием.");
                         return;
                     }
-
-                    // Вносим изменения в текущую запись
                     _reservations.DateTimeReserv = combinedDateTime;
                     _reservations.Hours = selectedHours;
                     _reservations.DopTimeMinut = selectedMinutes;
@@ -251,10 +255,10 @@ namespace Restoran.Page
 
                     RestoranEntities.GetContext().Entry(_reservations).State = EntityState.Modified;
                     RestoranEntities.GetContext().SaveChanges();
+                    NavigationService.GoBack();
                 }
                 else
                 {
-                    // В режиме создания новой записи выполняем проверку на перекрывающиеся бронирования
                     var overlappingReservations = RestoranEntities.GetContext().Reservations
                         .Where(r => r.RoomID == room.RoomID &&
                             ((newd.DateTimeReserv >= r.DateTimeReserv && newd.DateTimeReserv < r.DateEndReserv) ||
@@ -266,8 +270,6 @@ namespace Restoran.Page
                         MessageBox.Show("Выбранное количество часов и минут не может быть забронировано.");
                         return;
                     }
-
-                    // Создаем новую запись
                     Reservations reservation = new Reservations()
                     {
                         UserID = userId,
@@ -283,6 +285,7 @@ namespace Restoran.Page
                     RestoranEntities.GetContext().Reservations.Add(reservation);
                     RestoranEntities.GetContext().SaveChanges();
                     MessageBox.Show("Бронирование успешно сохранено");
+                    NavigationService.GoBack();
                 }
             }
             catch (Exception ex)

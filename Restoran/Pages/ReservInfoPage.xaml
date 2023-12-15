@@ -5,19 +5,55 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Restoran.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      Height="900" Width="900"
       Title="ReservInfoPage">
 
     <Grid Background="White">
-        <ListView x:Name="listView" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,40,0,58" FontFamily="Times New Roman" FontSize="16">
+        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,807" Width="912"  >
+            <StackPanel Orientation="Horizontal" Width="340">
+                <TextBlock Text="Поиск: " Width="90" FontSize="20" TextAlignment="Right" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comic Sans MS">
+                </TextBlock>
+                <TextBox Width="250" Name="TboxSerch" TextChanged="Tbox_Search" Height="35" FontSize="20"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Width="440">
+                <TextBlock Text="Выберете фильтр: " Width="200" FontSize="20" TextAlignment="Right"/>
+                <ComboBox Width="240" x:Name="ComboFilter" SelectionChanged="ComboType_SelectionChanged" Height="35" DisplayMemberPath="NameType" FontSize="20" Background="{x:Null}">
+                    <ComboBoxItem Content="Сначала новые"/>
+                    <ComboBoxItem Content="Сначала старые"/>
+                    <ComboBoxItem Content="По названию комнат"/>
+                </ComboBox>
+            </StackPanel>
+
+
+        </WrapPanel>
+        <ListView x:Name="listView" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,40,0,227" FontFamily="Times New Roman" FontSize="16">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding FIO}" Header="Имя"/>
-                    <GridViewColumn Header="Цена" DisplayMemberBinding="{Binding Room.NameRoom}" />
-                    <GridViewColumn Header="Кол-во" DisplayMemberBinding="{Binding DateTimeReserv}"/>
-                    <GridViewColumn Header="Кол-во" DisplayMemberBinding="{Binding NumberOfPeople}"/>
-                    <GridViewColumn Header="Кол-во" DisplayMemberBinding="{Binding Hours}"/>
-                    <GridViewColumn Header="" DisplayMemberBinding="{Binding DopTimeMinut}"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding FIO}" Header="ФИО"/>
+                    <GridViewColumn Header="Комната">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Rooms.NameRoom}" TextWrapping="Wrap" Width="150"></TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Описание">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding DateTimeReserv}" TextWrapping="Wrap" Width="100"></TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Описание">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding User.PhoneNumber}" TextWrapping="Wrap" Width="100"></TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Кол-во людей" DisplayMemberBinding="{Binding NumberOfPeople}"/>
+                    <GridViewColumn Header="Часы" DisplayMemberBinding="{Binding Hours}"/>
+                    <GridViewColumn Header="Доп.мин" DisplayMemberBinding="{Binding DopTimeMinut}"/>
                     <GridViewColumn Header="Редактировать">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
@@ -28,8 +64,8 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Content="Сохранить" Click="Btn_Save_Click" HorizontalAlignment="Left" Margin="190,400,0,0" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16" Height="30" Width="89"/>
-        <Button Content="Удалить" HorizontalAlignment="Left" Click="Btn_Del_Click" Margin="400,412,0,0" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16" Height="30" Width="70" RenderTransformOrigin="0.521,-0.117"/>
-        <Button Content="Назад" HorizontalAlignment="Left"  Margin="742,767,0,0" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16" Height="27" Width="51"/>
+        <Button Content="Сохранить" Click="Btn_Save_Click" HorizontalAlignment="Left" Margin="7,675,0,0" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16" Height="30" Width="89"/>
+        <Button Content="Удалить" HorizontalAlignment="Left" Click="Btn_Del_Click" Margin="111,675,0,0" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16" Height="30" Width="70" RenderTransformOrigin="0.521,-0.117"/>
+        <Button Content="Назад" HorizontalAlignment="Left"  Margin="504,677,0,0" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16" Height="27" Width="51" RenderTransformOrigin="0.569,-2.037"/>
     </Grid>
 </Page>
