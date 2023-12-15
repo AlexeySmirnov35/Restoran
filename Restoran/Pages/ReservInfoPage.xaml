@@ -28,8 +28,8 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Content="Сохранить" Click="Btn_Save_Click" HorizontalAlignment="Left" Margin="244,752,0,0" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16" Height="31" Width="89"/>
-        <Button Content="Удалить" HorizontalAlignment="Left" Click="Btn_Del_Click" Margin="428,755,0,0" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16" Height="30" Width="71"/>
+        <Button Content="Сохранить" Click="Btn_Save_Click" HorizontalAlignment="Left" Margin="190,400,0,0" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16" Height="30" Width="89"/>
+        <Button Content="Удалить" HorizontalAlignment="Left" Click="Btn_Del_Click" Margin="400,412,0,0" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16" Height="30" Width="70" RenderTransformOrigin="0.521,-0.117"/>
         <Button Content="Назад" HorizontalAlignment="Left"  Margin="742,767,0,0" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16" Height="27" Width="51"/>
     </Grid>
 </Page>

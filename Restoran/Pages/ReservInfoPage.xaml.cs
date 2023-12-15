@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Restoran.Page;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,15 +21,18 @@ namespace Restoran.Pages
     /// </summary>
     public partial class ReservInfoPage
     {
-        public ReservInfoPage()
+        private int _role;
+        public ReservInfoPage(int role)
         {
             InitializeComponent();
             listView.ItemsSource = RestoranEntities.GetContext().Reservations.ToList();
+            _role= role;
         }
 
         private void Btn_Save_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new AddEditReserv(2));
+           NavigationService.Navigate(new FormPage(null,_role));
+           
         }
 
         private void Btn_Del_Click(object sender, RoutedEventArgs e)
@@ -38,7 +42,7 @@ namespace Restoran.Pages
 
         private void Btn_Edit_Click(object sender, RoutedEventArgs e)
         {
-
+                NavigationService.Navigate(new FormPage((sender as Button).DataContext as Reservations,_role));
         }
     }
 }

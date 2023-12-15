@@ -12,7 +12,7 @@
         <TextBlock HorizontalAlignment="Left" Margin="207,30,0,0" TextWrapping="Wrap" Text="Бронирование команаты " VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="36" FontWeight="Bold" FontStyle="Italic" TextDecorations="Underline"/>
 
         <TextBlock HorizontalAlignment="Left" Margin="138,129,0,0" TextWrapping="Wrap" Text="Фамилия" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16"/>
-        <TextBox x:Name="tbSur" HorizontalAlignment="Left" Margin="229,129,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="122" FontFamily="Times New Roman" FontSize="16" Height="23"/>
+        <TextBox x:Name="tbSur" Text="" HorizontalAlignment="Left" Margin="229,129,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="122" FontFamily="Times New Roman" FontSize="16" Height="23"/>
 
         <TextBlock HorizontalAlignment="Left" Margin="140,168,0,0" TextWrapping="Wrap" Text="Имя" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16"/>
         <TextBox x:Name="tbName" HorizontalAlignment="Left" Margin="229,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="123" FontFamily="Times New Roman" FontSize="16" Height="24"/>
@@ -24,13 +24,13 @@
         <TextBox x:Name="tbPhone" HorizontalAlignment="Left" Margin="229,244,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="126" FontFamily="Times New Roman" FontSize="16" Height="25"/>
 
         <TextBlock HorizontalAlignment="Left" Margin="140,283,0,0" TextWrapping="Wrap" Text="Количество людей" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16" Height="36" Width="87"/>
-        <TextBox x:Name="tbNum" HorizontalAlignment="Left" Margin="231,287,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="63" FontFamily="Times New Roman" FontSize="16" Height="33"/>
+        <TextBox x:Name="tbNum" HorizontalAlignment="Left" Text="{Binding NumberOfPeople}" Margin="231,287,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="63" FontFamily="Times New Roman" FontSize="16" Height="33"/>
 
-        <DatePicker x:Name="datePicker"  SelectedDateChanged="DatePicker_SelectedChanged" HorizontalAlignment="Left" Margin="534,204,0,0" VerticalAlignment="Top" Height="33" Width="146" FontFamily="Times New Roman" FontSize="16"/>
+        <DatePicker x:Name="datePicker" SelectedDate="{Binding DateTimeReserv}" SelectedDateChanged="DatePicker_SelectedChanged" HorizontalAlignment="Left" Margin="534,204,0,0" VerticalAlignment="Top" Height="33" Width="146" FontFamily="Times New Roman" FontSize="16"/>
 
-        <ComboBox x:Name="cbTime" HorizontalAlignment="Left" Margin="536,247,0,0" VerticalAlignment="Top" Width="143" FontFamily="Times New Roman" FontSize="16" Height="26"/>
+        <ComboBox x:Name="cbTime" HorizontalAlignment="Left"  Margin="536,247,0,0" VerticalAlignment="Top" Width="143" FontFamily="Times New Roman" FontSize="16" Height="26"/>
 
-        <ComboBox Name="cbRoom" ItemsSource="{Binding Rooms}" SelectionChanged="RoomComboBox_SelectionChanged"  HorizontalAlignment="Left" Margin="535,131,0,0" VerticalAlignment="Top" Width="146" FontFamily="Times New Roman" FontSize="14" Height="65">
+        <ComboBox Name="cbRoom" SelectionChanged="RoomComboBox_SelectionChanged" HorizontalAlignment="Left" Margin="535,131,0,0" VerticalAlignment="Top" Width="146" FontFamily="Times New Roman" FontSize="14" Height="65">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding NameRoom}" TextWrapping="Wrap"/>

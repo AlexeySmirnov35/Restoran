@@ -35,7 +35,7 @@ namespace Restoran.Pages
 
         private void Btn_Resrev_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new FormPage(_role));
+            NavigationService.Navigate(new ReservInfoPage(_role));
         }
         private void Reg_Btn_Click(object sender, RoutedEventArgs e)
         {

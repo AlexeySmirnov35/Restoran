@@ -22,22 +22,22 @@ namespace Restoran.Pages
     public partial class InfoRoomPage
     {
         private Rooms _rooms= new Rooms();
-       
-        public InfoRoomPage(Rooms selrooms)
+       private int _role;
+        public InfoRoomPage(Rooms selrooms,int role)
         {
             InitializeComponent();
             if (selrooms != null)
             {
                 _rooms = selrooms;
             }
-           
+           _role= role;
             DataContext = _rooms;
             
         }
 
         private void Btn_Reserv_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new AddEditReserv(1));
+            NavigationService.Navigate(new FormPage(null,_role));
         }
     }
 }

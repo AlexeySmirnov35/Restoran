@@ -21,7 +21,7 @@ namespace Restoran.Pages
     /// </summary>
     public partial class RoomsPage 
     {
-        private int _roleId;
+        
         public int userRoleId;
 
         public RoomsPage(int to)
@@ -37,8 +37,8 @@ namespace Restoran.Pages
 
         private void Btn_Podr(object sender, RoutedEventArgs e)
         {
-            //NavigationService.Navigate(new InfoRoomPage((sender as Button).DataContext as Rooms));
-            NavigationService.Navigate(new FormPage(userRoleId));
+            NavigationService.Navigate(new InfoRoomPage((sender as Button).DataContext as Rooms,userRoleId));
+            //NavigationService.Navigate(new FormPage(null,userRoleId));
         }
 
         private void Tbox_Search(object sender, TextChangedEventArgs e)
