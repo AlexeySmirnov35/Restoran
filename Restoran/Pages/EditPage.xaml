@@ -24,7 +24,7 @@
                 </ComboBox>
             </StackPanel>
         </WrapPanel>
-        <ListView x:Name="listView" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="-2,64,2,513" FontFamily="Times New Roman" FontSize="16">
+        <ListView x:Name="listView" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="-2,64,2,157" FontFamily="Times New Roman" FontSize="16">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Фото товара">
