@@ -23,5 +23,7 @@
         <TextBlock Text="Кол-во людей:" TextWrapping="Wrap"  Margin="12,532,0,316" Width="100" HorizontalAlignment="Left" FontSize="22" FontWeight="Bold" FontFamily="Times New Roman"/>
         <Button Content="Забронировать" Click="Btn_Reserv_Click" HorizontalAlignment="Left" Margin="352,615,0,0" VerticalAlignment="Top" TextBlock.FontFamily="Times New Roman" TextBlock.FontWeight="Bold" TextBlock.FontSize="22" Height="61" Width="170"/>
         <TextBox IsReadOnly="True" Text="{Binding Description}" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" ScrollViewer.VerticalScrollBarVisibility="Auto"  Margin="296,92,0,332" Width="476" HorizontalAlignment="Left" FontSize="22" FontWeight="Bold" FontFamily="Times New Roman" BorderBrush="{x:Null}"/>
+        <Button Content="Назад" HorizontalAlignment="Left" Click="Btn_GoBack"  Margin="789,621,0,0" FontSize="16" FontFamily="Times New Roman" HorizontalContentAlignment="Center" 
+            VerticalAlignment="Top" Height="33" Width="77"/>
     </Grid>
 </Page>

@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="АнтиКАфе" Height="800" Width="800" WindowStartupLocation="CenterScreen" MinWidth="800" MinHeight="800" >
     <Grid>
-        <Frame x:Name="FrmMain"/>
+        <Frame x:Name="FrmMain" NavigationUIVisibility="Hidden"/>
 
     </Grid>
 </Window>

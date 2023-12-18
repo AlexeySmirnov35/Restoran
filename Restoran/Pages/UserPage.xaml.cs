@@ -30,27 +30,20 @@ namespace Restoran.Pages
 
         private void Btn_Save_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(null);
+            NavigationService.Navigate(new RegPage(null));
         }
 
         private void Btn_Del_Click(object sender, RoutedEventArgs e)
         { 
             var dbContext = RestoranEntities.GetContext();
             var userToDelete = listView.SelectedItems.Cast<User>().ToList();
-            // int totalReservationsDeleted = dbContext.Reservations.Count(r => r.UserID == userToDelete.UserID);
-            //int totalReservationsDeleted = dbContext.Reservations.Count(r => userToDelete.Select(u => u.UserID).Contains(r.UserID));
-
-
             if (MessageBox.Show($"Вы действительно хотите удалить эти {userToDelete.Count()} пользователей и все связанные записи брони? " +
                 $"Это также удалит записи о брони.", "Предупреждение", MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
             {
                 return;
             }
-
             try
-            {
-                
-
+            { 
                 dbContext.User.RemoveRange(userToDelete);
                 dbContext.SaveChanges();
 
@@ -66,6 +59,20 @@ namespace Restoran.Pages
         private void Btn_Edit_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new RegPage((sender as Button).DataContext as User));
+        }
+
+        private void ComboFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void Tbox_Search(object sender, TextChangedEventArgs e)
+        {
+
+        }
+        private void Btn_GoBack(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
         }
     }
 }

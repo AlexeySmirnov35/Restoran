@@ -29,7 +29,7 @@
         <TextBlock HorizontalAlignment="Left" Margin="167,304,0,0" TextWrapping="Wrap" Text="Напишите цену доп. времени" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16" Height="38" Width="150"/>
         <TextBlock HorizontalAlignment="Left" Margin="201,22,0,0" TextWrapping="Wrap" Text="Напишит название" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16"/>
         <TextBlock HorizontalAlignment="Left" Margin="15,314,0,0" TextWrapping="Wrap" Text="Напишит цену" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16"/>
-        <Button Content="Назад" HorizontalAlignment="Left" Click="Image_Load"  Margin="709,406,0,0" FontSize="16" FontFamily="Times New Roman" HorizontalContentAlignment="Center" 
+        <Button Content="Назад" HorizontalAlignment="Left" Click="Btn_GoBack"  Margin="709,406,0,0" FontSize="16" FontFamily="Times New Roman" HorizontalContentAlignment="Center" 
                 VerticalAlignment="Top" Height="33" Width="77"/>
         <Button Content="Сохранить" HorizontalAlignment="Left" Click="BtnSave_Click"  Margin="320,398,0,0" FontSize="16" FontFamily="Times New Roman" 
                 HorizontalContentAlignment="Center" VerticalAlignment="Top" Height="39" Width="147" />

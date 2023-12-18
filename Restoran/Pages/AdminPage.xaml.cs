@@ -39,7 +39,11 @@ namespace Restoran.Pages
         }
         private void Reg_Btn_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("pages/RegPage.xaml", UriKind.Relative));
+            NavigationService.Navigate(new UserPage());
+        }
+        private void Btn_GoBack(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
         }
     }
 }

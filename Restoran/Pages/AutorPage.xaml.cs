@@ -31,7 +31,12 @@ namespace Restoran.Page
         {
             try
             {
-               
+                if(string.IsNullOrWhiteSpace(tbLog.Text) || string.IsNullOrWhiteSpace(tbPas.Password))
+                 {
+                    MessageBox.Show("Укажите логин и пароль!");
+                    return;
+                }
+
                 var userObj = RestoranEntities.GetContext().User.FirstOrDefault(x => x.login == tbLog.Text && x.passwod == tbPas.Password);
                 if (userObj == null)
                 {
@@ -42,13 +47,13 @@ namespace Restoran.Page
                     switch (userObj.RoleID)
                     { 
                         case 1:
-                            MessageBox.Show("Приветсвуем Вас, " + userObj.Name + "!", "Успешная авторизация", MessageBoxButton.OK, MessageBoxImage.Information);
+                            MessageBox.Show("Приветсвуем Вас, " + userObj.Name + "!", "Вы вошли как соотрудник", MessageBoxButton.OK, MessageBoxImage.Information);
                             NavigationService.Navigate(new AdminPage(userObj.RoleID.HasValue ? userObj.RoleID.Value : 0));
                             
                             break;
 
                         case 2:
-                            MessageBox.Show("Приветсвуем Вас " + userObj.Name + "!", "Вы вошли как соотрудник", MessageBoxButton.OK, MessageBoxImage.Information);
+                            MessageBox.Show("Приветсвуем Вас " + userObj.Name + "!", "Успешная авторизация", MessageBoxButton.OK, MessageBoxImage.Information);
                             NavigationService.Navigate(new RoomsPage(userObj.RoleID.HasValue ? userObj.RoleID.Value : 0));
 
                             break;
@@ -70,6 +75,16 @@ namespace Restoran.Page
         private void btn_cli(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Uri("Pages/EditPage.xaml",UriKind.Relative));
+        }
+        private void Btn_GoBack(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
+
+        private void AutoGuest_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Приветсвуем гость "  +"!", "Успешная авторизация", MessageBoxButton.OK, MessageBoxImage.Information);
+            NavigationService.Navigate(new RoomsPage(2));
         }
     }
 }

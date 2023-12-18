@@ -1,5 +1,6 @@
 ﻿using Restoran.Page;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -78,6 +79,20 @@ namespace Restoran.Pages
         private void ComboType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             UpdateRooms();
+        }
+        private void Page_IsVis(object sender, DependencyPropertyChangedEventArgs e)
+        {
+
+            if (Visibility == Visibility.Visible)
+            {
+                RestoranEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
+                listView.ItemsSource = RestoranEntities.GetContext().Reservations.ToList();
+            }
+
+        }
+        private void Btn_GoBack(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
         }
     }
 }

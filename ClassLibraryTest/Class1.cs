@@ -11,11 +11,7 @@ namespace ClassLibraryTest.Tests
     [TestClass()]
     public class Class1
     {
-        [TestMethod()]
-        public void ValidPassword()
-        {
-
-        }
+       
 
 
     }

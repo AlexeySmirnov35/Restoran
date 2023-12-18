@@ -234,6 +234,27 @@
     <Resource Include="img\imgno.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="img\kandinsky-download-1702842576189.png" />
+    <Resource Include="img\kandinsky-download-1702838034851.png" />
+    <Resource Include="img\702842576189.png" />
+    <Resource Include="img\kandinsky-download-1702838221337.png" />
+    <Resource Include="img\kandinsky-download-1702838423552.png" />
+    <Resource Include="img\kandinsky-download-1702839895441.png" />
+    <Resource Include="img\kandinsky-download-1702839955983.png" />
+    <Resource Include="img\kandinsky-download-1702840097285.png" />
+    <Resource Include="img\kandinsky-download-1702840122265.png" />
+    <Resource Include="img\kandinsky-download-1702840296339.png" />
+    <Resource Include="img\kandinsky-download-1702840330852.png" />
+    <Resource Include="img\kandinsky-download-1702840388603.png" />
+    <Resource Include="img\kandinsky-download-1702840435051.png" />
+    <Resource Include="img\kandinsky-download-1702840534506.png" />
+    <Resource Include="img\kandinsky-download-1702840617783.png" />
+    <Resource Include="img\kandinsky-download-1702840654515.png" />
+    <Resource Include="img\kandinsky-download-1702841477462.png" />
+    <Resource Include="img\kandinsky-download-1702842162123.png" />
+    <Resource Include="img\kandinsky-download-1702842202890.png" />
+    <Resource Include="img\kandinsky-download-1702842375159.png" />
+    <Resource Include="img\2842162123.png" />
     <Content Include="Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model.edmx</DependentUpon>

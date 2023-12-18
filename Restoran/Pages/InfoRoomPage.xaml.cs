@@ -39,5 +39,9 @@ namespace Restoran.Pages
         {
             NavigationService.Navigate(new FormPage(null,_role));
         }
+        private void Btn_GoBack(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
     }
 }

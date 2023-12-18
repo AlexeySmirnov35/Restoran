@@ -5,12 +5,26 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Restoran.Page"
       mc:Ignorable="d" 
-      d:DesignHeight="800" d:DesignWidth="800"
-      Title="EditPage">
+      Height="800" Width="800"
+      Title="EditPage" IsVisibleChanged="Page_IsVis">
 
     <Grid Background="White">
-
-        <ListView x:Name="listView" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,40,0,58" FontFamily="Times New Roman" FontSize="16">
+        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,3,0,739" Width="800"  >
+            <StackPanel Orientation="Horizontal" Width="340">
+                <TextBlock Text="Поиск: " Width="90" FontSize="20" TextAlignment="Right" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Comic Sans MS">
+                </TextBlock>
+                <TextBox Width="250" Name="TboxSerch" TextChanged="Tbox_Search" Height="35" FontSize="20"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Width="440">
+                <TextBlock Text="Выберете фильтр: " Width="200" FontSize="20" TextAlignment="Right"/>
+                <ComboBox Width="240" x:Name="ComboFilter" SelectionChanged="ComboFilter_SelectionChanged" Height="35" DisplayMemberPath="NameType" FontSize="20" Background="{x:Null}">
+                    <ComboBoxItem Content="По возрастанию"/>
+                    <ComboBoxItem Content="По уменьшению"/>
+                    
+                </ComboBox>
+            </StackPanel>
+        </WrapPanel>
+        <ListView x:Name="listView" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="-2,64,2,513" FontFamily="Times New Roman" FontSize="16">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Фото товара">
@@ -28,31 +42,43 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-
-                    <GridViewColumn DisplayMemberBinding="{Binding NameRoom}" Header="Имя"/>
-
-                    <GridViewColumn Header="Цена" DisplayMemberBinding="{Binding Price,StringFormat={}{0:N2} Руб}" />
-                    <GridViewColumn Header="Кол-во" DisplayMemberBinding="{Binding NumberPeopleMax}"/>
-                    <GridViewColumn Header="Описание">
+                    <GridViewColumn Header="Имя">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Description}" TextWrapping="Wrap" Width="400"></TextBlock>
+                                <TextBlock Text="{Binding NameRoom}" TextWrapping="Wrap" Width="100"></TextBlock>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
+                    <GridViewColumn Header="Цена">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Price,StringFormat={}{0:N2} Руб/час}" TextWrapping="Wrap" Width="70"></TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Доп цена">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding DopPriceMinut,StringFormat={}{0:N2} Руб/мин}" TextWrapping="Wrap" Width="65"></TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Макс. людей" DisplayMemberBinding="{Binding NumberPeopleMax}"/>
+
                     <GridViewColumn Header="Редактировать">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button x:Name="BtnEdit" Click="Btn_Edit_Click" Width="auto" FontSize="14" Height="auto" Content="Редактироват"/>
+                                <Button x:Name="BtnEdit" Click="Btn_Edit_Click" Width="auto" FontSize="14" Height="auto" Content="Редактировать"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
+
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Content="Сохранить" Click="Btn_Save_Click" HorizontalAlignment="Left" Margin="244,752,0,0" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16" Height="31" Width="89"/>
-        <Button Content="Удалить" HorizontalAlignment="Left" Click="Btn_Del_Click" Margin="428,755,0,0" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16" Height="30" Width="71"/>
-        <Button Content="Назад" HorizontalAlignment="Left"  Margin="742,767,0,0" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16" Height="27" Width="51"/>
+        <Button Content="Сохранить" Click="Btn_Save_Click" HorizontalAlignment="Left" Margin="20,683,0,0" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16" Height="31" Width="90"/>
+        <Button Content="Удалить" HorizontalAlignment="Left" Click="Btn_Del_Click" Margin="132,681,0,0" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16" Height="30" Width="70"/>
+        <Button Content="Назад" Click="Btn_GoBack" HorizontalAlignment="Left"  Margin="506,687,0,0" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16" Height="28" Width="52"/>
 
     </Grid>
 </Page>

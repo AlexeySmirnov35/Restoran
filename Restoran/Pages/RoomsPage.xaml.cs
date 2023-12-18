@@ -77,5 +77,9 @@ namespace Restoran.Pages
         {
             UpdateRooms();
         }
+        private void Btn_GoBack(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
     }
 }

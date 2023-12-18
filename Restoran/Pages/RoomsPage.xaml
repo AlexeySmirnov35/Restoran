@@ -25,7 +25,7 @@
             </StackPanel>
 
         </WrapPanel>
-        <ListView Name="LVieew" Margin="0,59,0,0"   ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center" Background="{x:Null}" Foreground="Black" FontFamily="Times New Roman" FontSize="16">
+        <ListView Name="LVieew" Margin="0,59,0,70"   ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center" Background="{x:Null}" Foreground="Black" FontFamily="Times New Roman" FontSize="16">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center"></WrapPanel>
@@ -66,5 +66,7 @@
 
 
         </ListView>
+        <Button Content="Назад" HorizontalAlignment="Left" Click="Btn_GoBack"  Margin="791,834,0,0" FontSize="16" FontFamily="Times New Roman" HorizontalContentAlignment="Center" 
+            VerticalAlignment="Top" Height="33" Width="77"/>
     </Grid>
 </Page>
