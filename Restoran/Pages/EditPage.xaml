@@ -52,7 +52,10 @@
                     <GridViewColumn Header="Цена">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Price,StringFormat={}{0:N2} Руб/час}" TextWrapping="Wrap" Width="70"></TextBlock>
+                                <TextBlock Text="{Binding Price,StringFormat={}{0:N2} Руб/час}" TextWrapping="Wrap" Width="70">
+                                    
+                                </TextBlock>
+                                
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

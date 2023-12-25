@@ -9,6 +9,9 @@
       Title="AddEditReserv">
 
     <Grid Background="White">
+        <TextBlock x:Name="txtTotalReservationTime" Text="Общее время бронирования:" Margin="0,0,610,422" />
+        <TextBlock x:Name="txtAverageReservationTime" Text="Среднее время бронирования:" Margin="-2,42,606,382" />
+
         <TextBlock HorizontalAlignment="Left" Margin="207,30,0,0" TextWrapping="Wrap" Text="Бронирование команаты " VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="36" FontWeight="Bold" FontStyle="Italic" TextDecorations="Underline"/>
 
         <TextBlock HorizontalAlignment="Left" Margin="138,129,0,0" TextWrapping="Wrap" Text="Фамилия" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="16"/>

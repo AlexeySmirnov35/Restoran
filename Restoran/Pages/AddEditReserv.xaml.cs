@@ -115,10 +115,16 @@ namespace Restoran.Pages
 
                     cbTime.IsEnabled = true;
 
+TimeSpan totalReservationTime = GetTotalReservationTime(room.RoomID, selectedDate.Value);
+            TimeSpan averageReservationTime = GetAverageReservationTime(room.RoomID, selectedDate.Value);
 
+            // Обновление значений в TextBlock
+            txtTotalReservationTime.Text = $"Общее время бронирования: {totalReservationTime.TotalHours} часов";
+            txtAverageReservationTime.Text = $"Среднее время бронирования: {averageReservationTime.TotalHours} часов";
                     cbTime.Items.Clear();
                     if (reservations.Any())
                     {
+                        
                         for (int i = 9; i <= 20; i++)
                         {
                             if (!bookedHours.Contains(i))
@@ -144,6 +150,48 @@ namespace Restoran.Pages
             }
         }
 
+        private TimeSpan GetTotalReservationTime(int roomId, DateTime selectedDate)
+        {
+            var reservationsForRoomAndDate = RestoranEntities.GetContext().Reservations
+                .Where(r => r.RoomID == roomId && DbFunctions.TruncateTime(r.DateTimeReserv) == selectedDate)
+                .ToList();
+
+            // Вычислить общее время бронирования для выбранной комнаты и даты
+            TimeSpan totalReservationTime = TimeSpan.Zero;
+            foreach (var reservation in reservationsForRoomAndDate)
+            {
+                totalReservationTime += (reservation.DateEndReserv - reservation.DateTimeReserv).Value;
+            }
+
+            return totalReservationTime;
+        }
+
+        // Метод для вывода среднего времени бронирования для выбранной комнаты и даты
+        private TimeSpan GetAverageReservationTime(int roomId, DateTime selectedDate)
+        {
+            var reservationsForRoomAndDate = RestoranEntities.GetContext().Reservations
+                .Where(r => r.RoomID == roomId && DbFunctions.TruncateTime(r.DateTimeReserv) == selectedDate)
+                .ToList();
+
+            // Проверить, есть ли бронирования, чтобы избежать деления на ноль
+            if (reservationsForRoomAndDate.Count > 0)
+            {
+                // Вычислить среднее время бронирования для выбранной комнаты и даты
+                TimeSpan totalReservationTime = TimeSpan.Zero;
+                foreach (var reservation in reservationsForRoomAndDate)
+                {
+                    totalReservationTime += (reservation.DateEndReserv - reservation.DateTimeReserv).Value;
+                }
+
+                // Используйте TotalMinutes для получения общего времени в минутах и затем выполните деление на количество бронирований
+                double averageMinutes = totalReservationTime.TotalMinutes / reservationsForRoomAndDate.Count;
+
+                TimeSpan averageReservationTime = TimeSpan.FromMinutes(averageMinutes);
+                return averageReservationTime;
+            }
+
+            return TimeSpan.Zero;
+        }
 
 
 
